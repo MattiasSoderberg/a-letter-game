@@ -25,8 +25,8 @@ export default function RootLayout({
   if (!locales.includes(locale)) notFound();
 
   return (
-    <html lang={locale}>
-      <body className={roboto.className}>{children}</body>
+    <html lang={locale} className={roboto.className}>
+      <body className="w-screen h-screenDynamic">{children}</body>
     </html>
   );
 }
