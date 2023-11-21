@@ -11,7 +11,15 @@ const config: Config = {
       sans: ["Roboto", "sans-serif"],
     },
     extend: {
-      colors: {},
+      colors: {
+        lightMain: "#F6F6F6",
+        darkMain: "#000D80",
+        firstMain: "#0A1FDC",
+        firstLight: "#5566FF",
+        secondMain: "#7E3F94",
+        secondLight: "#C897D9",
+        thirdMain: "#E4E905",
+      },
       height: {
         navHeight: "70px",
         screenDynamic: "100dvh",
