@@ -3,6 +3,9 @@
     "title": "En ordlek",
     "description": "En ordlek för hela familjen"
   },
+  "Utils": {
+    "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö"
+  },
   "Index": {
     "title": "Välkommen till En ordlek!"
   }
