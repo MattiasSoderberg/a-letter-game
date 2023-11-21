@@ -1,10 +1,8 @@
 import { useTranslations } from "next-intl";
+import { H1 } from "./components/Typography";
+import MainContainer from "./components/containers/MainContainer";
 
 export default function Home() {
   const t = useTranslations("Index");
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>{t("title")}</h1>
-    </main>
-  );
+  return <MainContainer>{/* <H1>{t("title")}</H1> */}</MainContainer>;
 }
