@@ -58,7 +58,7 @@ const Background = () => {
           </BackgroundLetter>
         );
       })}
-      <div className="w-full h-full absolute top-0 left-0 z-10 bg-[#FFFFFF75] backdrop-blur-[4px]" />
+      <div className="w-full h-full absolute top-0 left-0 z-10 bg-[#FFFFFF4D] backdrop-blur-[4px]" />
     </div>
   );
 };
