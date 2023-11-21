@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "../globals.css";
 import { notFound } from "next/navigation";
+import Navbar from "./components/Navbar";
+import Background from "./components/containers/Background/Background";
 
 const roboto = Roboto({
   weight: ["400", "500", "700"],
@@ -26,7 +28,11 @@ export default function RootLayout({
 
   return (
     <html lang={locale} className={roboto.className}>
-      <body className="w-screen h-screenDynamic">{children}</body>
+      <body className="w-screen h-screenDynamic relative overflow-hidden">
+        <Background />
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
