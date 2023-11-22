@@ -13,21 +13,28 @@ const BackgroundLetter = ({
   color = "firstLight",
   position,
 }: Props) => {
-  const delay = Math.random() * 3;
+  const delay = Math.floor(Math.random() * 30) / 10;
+  const degreesOne = Math.floor(Math.random() * 15 + 5);
+  const degreesTwo = Math.floor(Math.random() * 15 + 5);
+  const rotation =
+    Math.floor(Math.random() * 2 + 1) % 2 === 0
+      ? [0, degreesOne, -degreesTwo, 0]
+      : [0, -degreesOne, degreesTwo, 0];
 
   return (
     <motion.p
       animate={{
         opacity: [0.6, 1, 1, 0.6],
         scale: [0.8, 1.2, 1.2, 0.8],
+        rotate: rotation,
       }}
       transition={{
         delay: delay,
         repeat: Infinity,
-        repeatDelay: 2 + delay,
-        duration: 4 + delay,
+        repeatDelay: 1 + delay,
+        duration: 3 + delay,
         ease: "easeInOut",
-        times: [0, 0.4, 0.6, 1],
+        times: [null, 0.4, 0.6, 1],
       }}
       className={`text-4xl text-${color} absolute ${position} md:text-5xl`}
     >
