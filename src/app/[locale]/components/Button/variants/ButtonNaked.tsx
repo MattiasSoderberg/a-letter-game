@@ -3,13 +3,13 @@ import Button from "../Button";
 
 interface Props {
   children: React.ReactNode;
-  hovers: string;
-  onClick: () => void;
+  hovers?: string;
+  onClick?: () => void;
 }
 
-const ButtonNaked = ({ hovers, onClick, ...rest }: Props) => {
+const ButtonNaked = ({ hovers, ...rest }: Props) => {
   const classes = {
-    background: "",
+    background: "transparent",
     paddings: "",
     hovers: hovers,
   };
