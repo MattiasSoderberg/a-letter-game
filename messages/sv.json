@@ -1,14 +1,14 @@
 {
   "Metadata": {
-    "title": "En ordlek",
-    "description": "En ordlek för hela familjen"
+    "title": "En bokstavslek",
+    "description": "En bokstavslek för hela familjen"
   },
   "Utils": {
     "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö"
   },
   "Index": {
-    "title": "Välkommen till en ordlek!",
-    "subtitle": "En ordlek man kan spela med familjen, eller delar av den i alla fall.",
+    "title": "Välkommen till en bokstavslek!",
+    "subtitle": "En bokstavslek man kan spela med familjen, eller i alla fall delar av den.",
     "message": "Det är du själv som bestämmer hur spelet ska spelas genom att bestämma kategorier, betänktetid och lag. Det kan vara bra att börja med att läsa igenom reglerna så ni vet hur man spelar.",
     "new_game_button_text": "Nytt spel",
     "rules_button_text": "Till reglerna"
