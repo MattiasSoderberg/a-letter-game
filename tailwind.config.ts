@@ -13,7 +13,8 @@ const config: Config = {
     extend: {
       colors: {
         lightMain: "#F6F6F6",
-        darkMain: "#000D80",
+        darkMain: "#070B2F",
+        firstDark: "#000D80",
         firstMain: "#0A1FDC",
         firstLight: "#5566FF",
         secondMain: "#7E3F94",
