@@ -1,36 +1,25 @@
 {
   "Metadata": {
-    "title": "En bokstavslek",
+    "title": "A Letter Game",
     "description": "En bokstavslek för hela familjen"
   },
   "Utils": {
     "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö"
   },
   "Navigation": {
-    "about": "Om",
-    "rules": "Regler",
-    "play": "Spela",
-    "language": "Språk"
+    "about": "About",
+    "rules": "Rules",
+    "play": "Play",
+    "language": "Language"
   },
   "Index": {
-    "title": "Välkommen till en bokstavslek!",
+    "title": "Welcome to A Letter Game!",
     "subtitle": "En bokstavslek man kan spela med familjen, eller i alla fall delar av den.",
     "message": "Det är du själv som bestämmer hur spelet ska spelas genom att bestämma kategorier, betänktetid och lag. Det kan vara bra att börja med att läsa igenom reglerna så ni vet hur man spelar.",
-    "links": {
-      "new_game": {
-        "text": "Nytt spel",
-        "href": "/game"
-      },
-      "rules": {
-        "text": "Läs reglerna",
-        "href": "/rules"
-      }
-    }
+    "new_game_button_text": "Nytt spel",
+    "rules_button_text": "Till reglerna"
   },
   "About": {
-    "title": "Om En bokstavslek"
-  },
-  "Rules": {
-    "title": "Regler"
+    "title": "About A Letter Game"
   }
 }
