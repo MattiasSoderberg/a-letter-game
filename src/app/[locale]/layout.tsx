@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "../globals.css";
 import { notFound } from "next/navigation";
-import Navbar from "./components/Navbar";
-import Background from "./components/containers/Background/Background";
+import Navbar from "../components/Navbar";
+import Background from "../components/containers/Background/Background";
 import { AppContextProvider } from "@/context/AppContext";
-import DrawerMenu from "./components/DrawerMenu/DrawerMenu";
+import DrawerMenu from "../components/DrawerMenu/DrawerMenu";
 
 const roboto = Roboto({
   weight: ["400", "500", "700"],

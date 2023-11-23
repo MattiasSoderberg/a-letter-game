@@ -1,9 +1,9 @@
 import { useTranslations } from "next-intl";
-import { H1, H2, TextRegular } from "./components/Typography";
-import MainContainer from "./components/containers/MainContainer";
-import TextContainer from "./components/containers/TextContainer";
-import ButtonStandard from "./components/Button/variants/ButtonStandard";
-import LinkButton from "./components/Link/LinkButton";
+import { H1, H2, TextRegular } from "../components/Typography";
+import MainContainer from "../components/containers/MainContainer";
+import TextContainer from "../components/containers/TextContainer";
+import ButtonStandard from "../components/Button/variants/ButtonStandard";
+import LinkButton from "../components/Link/LinkButton";
 
 export default function Home() {
   const t = useTranslations("Index");
