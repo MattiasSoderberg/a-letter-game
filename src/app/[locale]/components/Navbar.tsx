@@ -1,19 +1,14 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import Logo from "./SVG/Logo";
-import ButtonNaked from "./Button/variants/ButtonNaked";
 import ButtonMenu from "./Button/variants/ButtonMenu";
+import Link from "next/link";
 
 const Navbar = () => {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const onClick = () => {
-    setIsActive(!isActive);
-  };
   return (
     <div className="w-full h-navHeight flex justify-between bg-lightMain relative z-30 p-5 md:px-10">
-      <div>
+      <Link href="/">
         <Logo />
-      </div>
+      </Link>
       <ButtonMenu />
     </div>
   );
