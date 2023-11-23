@@ -3,10 +3,13 @@ import { H1, H2, TextRegular } from "./components/Typography";
 import MainContainer from "./components/containers/MainContainer";
 import TextContainer from "./components/containers/TextContainer";
 import ButtonStandard from "./components/Button/variants/ButtonStandard";
+import LinkButton from "./components/Link/LinkButton";
 
 export default function Home() {
   const t = useTranslations("Index");
-
+  // const links = useTranslations("Index.links");
+  // console.log(links);
+  console.log(t("links.new_game.href"));
   return (
     <MainContainer>
       <TextContainer>
@@ -17,10 +20,15 @@ export default function Home() {
         <TextRegular>{t("message")}</TextRegular>
       </TextContainer>
       <div className="w-full h-fit flex flex-col gap-6 mt-10">
-        <ButtonStandard>{t("new_game_button_text")}</ButtonStandard>
-        <ButtonStandard background="secondLight">
-          {t("rules_button_text")}
-        </ButtonStandard>
+        <LinkButton href={t("links.new_game.href") as any}>
+          {t("links.new_game.text")}
+        </LinkButton>
+        <LinkButton
+          href={t("links.rules.href") as any}
+          background="secondLight"
+        >
+          {t("links.rules.text")}
+        </LinkButton>
       </div>
     </MainContainer>
   );
