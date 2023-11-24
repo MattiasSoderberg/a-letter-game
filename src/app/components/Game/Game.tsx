@@ -32,8 +32,6 @@ const Game = () => {
     }
   }, []);
 
-  console.log(currentLetter, isRoundActive);
-
   return (
     <div className="w-full h-full flex flex-col gap-10">
       <div className="flex gap-4">
