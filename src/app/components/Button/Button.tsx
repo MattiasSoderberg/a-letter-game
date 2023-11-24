@@ -9,7 +9,8 @@ interface Props {
   borderRadius?: string;
   hovers?: string;
   transition?: string;
-  size?: "lg" | "sm";
+  size?: "lg" | "sm" | "xs";
+  type?: "button" | "submit";
   onClick?: () => void;
 }
 
@@ -22,17 +23,19 @@ const Button = ({
   hovers,
   transition = "transition-all duration-150 ease-in",
   size = "lg",
+  type = "button",
   onClick,
 }: Props) => {
-  const fonts = size === "lg" ? "text-lg" : "text-base";
+  const fonts =
+    size === "lg" ? "text-lg" : size === "sm" ? "text-base" : "text-sm";
   const bgColor = background.split(/(?=[A-Z])/)[0];
   const hoverClasses = hovers ? hovers : `hover:bg-${bgColor}Main`;
   const baseClasses = `${fonts} ${
-    size === "lg" ? paddings : "px-7 py-3"
+    size === "lg" ? paddings : size === "sm" ? "px-7 py-3" : "px-2 py-1"
   } ${borderRadius}`;
   const activeClasses = `${baseClasses} bg-${background} text-${color} ${hoverClasses} ${transition}`;
   return (
-    <button className={activeClasses} onClick={onClick}>
+    <button type={type} className={activeClasses} onClick={onClick}>
       {children}
     </button>
   );

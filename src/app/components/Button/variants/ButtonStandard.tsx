@@ -5,7 +5,9 @@ import Button from "../Button";
 interface Props {
   children: React.ReactNode;
   background?: string;
-  size?: "lg" | "sm";
+  paddings?: string;
+  size?: "lg" | "sm" | "xs";
+  type?: "button" | "submit";
   onClick?: () => void;
 }
 
