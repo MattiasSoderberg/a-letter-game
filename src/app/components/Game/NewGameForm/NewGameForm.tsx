@@ -10,40 +10,50 @@ export type Player = {
   points: number;
 };
 
+export type GameSettings = {
+  numberOfPlayers: number;
+  repeatingLetters: boolean;
+  numberOfRounds: number;
+  lengthOfRounds: number;
+};
+
 const NewGameForm = () => {
-  const [numberOfPlayers, setNumberOfPlayers] = useState<number>(0);
-  const { players, handleSetPlayers } = useAppContext();
+  const { players, handleSetPlayers, gameSettings, handleSetGameSettings } =
+    useAppContext();
   const router = useRouter();
 
-  const handleSetNumPlayers = (numPlayers: number) => {
-    setNumberOfPlayers(numPlayers);
+  const onSettingsFormSubmit = (settings: GameSettings) => {
+    handleSetGameSettings(settings);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onPlayersFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push("/game");
   };
 
   useEffect(() => {
-    if (numberOfPlayers > 0) {
+    if (gameSettings.numberOfPlayers > 0) {
       const players = [];
-      for (let i = 0; i < numberOfPlayers; i++) {
+      for (let i = 0; i < gameSettings.numberOfPlayers; i++) {
         players.push({ name: "", points: 0 });
       }
       handleSetPlayers(players);
     }
-  }, [numberOfPlayers]);
+  }, [gameSettings.numberOfPlayers]);
 
   return (
     <>
-      {numberOfPlayers > 0 ? (
+      {gameSettings.numberOfPlayers > 0 ? (
         <PlayersForm
           players={players}
           handleSetPlayers={handleSetPlayers}
-          onSubmit={onSubmit}
+          onSubmit={onPlayersFormSubmit}
         />
       ) : (
-        <NumPlayers onSubmit={handleSetNumPlayers} />
+        <NumPlayers
+          gameSettings={gameSettings}
+          onSettingsFormSubmit={onSettingsFormSubmit}
+        />
       )}
     </>
   );
