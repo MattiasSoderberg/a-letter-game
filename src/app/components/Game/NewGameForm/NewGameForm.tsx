@@ -5,8 +5,6 @@ import PlayersForm from "./PlayersForm";
 import { useAppContext } from "@/context/AppContext";
 import { useRouter } from "@/navigation";
 
-interface Props {}
-
 export type Player = {
   name: string;
   points: number;
