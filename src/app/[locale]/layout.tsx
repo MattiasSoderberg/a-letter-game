@@ -30,7 +30,7 @@ export default function RootLayout({
 
   return (
     <html lang={locale} className={`${roboto.className} overflow-hidden`}>
-      <body className="w-screen h-screenDynamic relative overflow-hidden">
+      <body className="w-screen h-screenResponsive relative overflow-hidden">
         <Background />
         <AppContextProvider>
           <Navbar />

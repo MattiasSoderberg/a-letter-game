@@ -24,7 +24,7 @@ const config: Config = {
       },
       height: {
         navHeight: "70px",
-        screenDynamic: "100dvh",
+        screenResponsive: "100svh",
       },
     },
   },
