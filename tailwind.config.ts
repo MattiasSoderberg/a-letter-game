@@ -21,6 +21,7 @@ const config: Config = {
         secondLight: "#C897D9",
         thirdMain: "#E4E905",
         textContainerBG: "#F6F6F6E6",
+        danger: "#F95252",
       },
       height: {
         navHeight: "70px",
@@ -31,7 +32,7 @@ const config: Config = {
   safelist: [
     {
       pattern:
-        /(text|bg)-(lightMain|darkMain|firstMain|firstLight|secondMain|secondLight|thirdMain)/,
+        /(text|bg)-(lightMain|darkMain|firstMain|firstLight|secondMain|secondLight|thirdMain|transparent|danger)/,
       variants: ["hover"],
     },
   ],
