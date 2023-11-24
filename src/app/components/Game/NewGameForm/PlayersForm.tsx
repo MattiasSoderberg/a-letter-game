@@ -1,6 +1,6 @@
 import React from "react";
 import { Player } from "./NewGameForm";
-import Input from "../../Form/Input";
+import Input from "../../Form/InputWIndex";
 import { TextLarge } from "../../Typography";
 import ButtonStandard from "../../Button/variants/ButtonStandard";
 
