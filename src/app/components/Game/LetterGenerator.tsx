@@ -14,7 +14,7 @@ const LetterGenerator = ({
   currentLetter,
   handleSetCurrentLetter,
 }: Props) => {
-  const [timeLeft, setTimeLeft] = useState<number>(0);
+  const [timeLeft, setTimeLeft] = useState<number>(3);
   const timerRef = useRef<ReturnType<typeof setInterval>>();
   const t = useTranslations("Game");
   const letters = alphabeth.split(",");
@@ -26,6 +26,10 @@ const LetterGenerator = ({
   const generateLetter = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
+    }
+
+    if (currentLetter === "?") {
+      handleSetCurrentLetter("");
     }
 
     setTimeLeft(3);
@@ -50,13 +54,19 @@ const LetterGenerator = ({
     };
   }, []);
 
+  console.log("IN LETTER GENERATOR", currentLetter);
+
   return (
     <TextContainer>
       <div className="w-full flex justify-center p-6">
         <div className="w-[200px] h-full flex flex-col items-center justify-center gap-10">
           <div className="w-full h-[200px] flex justify-center items-center p-4 bg-textContainerBG shadow-md rounded-lg">
             <p className="text-9xl text-darkMain">
-              {timeLeft > 0 ? timeLeft : currentLetter}
+              {currentLetter === "?"
+                ? currentLetter
+                : timeLeft > 0
+                ? timeLeft
+                : currentLetter}
             </p>
           </div>
           <ButtonStandard onClick={generateLetter}>
