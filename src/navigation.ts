@@ -25,6 +25,10 @@ export const pathnames = {
     sv: "/spel",
     en: "/game",
   },
+  "/game/new-game": {
+    sv: "/spel/nytt-spel",
+    en: "/game/new-game",
+  },
 } satisfies Pathnames<typeof locales>;
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =
