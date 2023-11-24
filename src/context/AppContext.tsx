@@ -5,10 +5,17 @@ interface Props {
   children: React.ReactNode;
 }
 
+type Player = {
+  name: string;
+  points: number;
+};
+
 interface AppContextType {
   handleOnOpen: () => void;
   handleOnClose: () => void;
   isMenuOpen: boolean;
+  players: Player[];
+  handleSetPlayers: (players: Player[]) => void;
 }
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -25,6 +32,7 @@ export const useAppContext = () => {
 
 export const AppContextProvider = ({ children }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [players, setPlayers] = useState<Player[]>([]);
 
   const handleOnOpen = () => {
     setIsMenuOpen(true);
@@ -34,16 +42,17 @@ export const AppContextProvider = ({ children }: Props) => {
     setIsMenuOpen(false);
   };
 
+  const handleSetPlayers = (players: Player[]) => {
+    setPlayers(players);
+  };
+
   const value = {
     isMenuOpen,
     handleOnOpen,
     handleOnClose,
+    handleSetPlayers,
+    players,
   };
 
-  return (
-    <AppContext.Provider value={value}>
-      {/* <AnimatePresence></AnimatePresence> */}
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
