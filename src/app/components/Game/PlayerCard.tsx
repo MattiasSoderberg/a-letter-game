@@ -11,14 +11,14 @@ interface Props {
 }
 
 const PlayerCard = ({ name, points, index }: Props) => {
-  const [playerScore, setPlayerScore] = useState<number>();
+  const [playerScore, setPlayerScore] = useState<number>(points);
   const { players, handleSetPlayers } = useAppContext();
 
   const onClick = (point: number) => {
     const data = [...players];
     data[index]["points"] += point;
     handleSetPlayers(players);
-    console.log(players);
+    setPlayerScore((prevScore) => prevScore + point);
   };
 
   useEffect(() => {
