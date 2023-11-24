@@ -6,6 +6,7 @@ interface Props {
   color?: string;
   background?: string;
   paddings?: string;
+  borders?: string;
   borderRadius?: string;
   hovers?: string;
   transition?: string;
@@ -19,6 +20,7 @@ const Button = ({
   color = "darkMain",
   background = "firstLight",
   paddings = "px-10 py-5",
+  borders = "",
   borderRadius = "rounded-lg",
   hovers,
   transition = "transition-all duration-150 ease-in",
@@ -32,7 +34,7 @@ const Button = ({
   const hoverClasses = hovers ? hovers : `hover:bg-${bgColor}Main`;
   const baseClasses = `${fonts} ${
     size === "lg" ? paddings : size === "sm" ? "px-7 py-3" : "px-2 py-1"
-  } ${borderRadius}`;
+  } ${borderRadius} ${borders}`;
   const activeClasses = `${baseClasses} bg-${background} text-${color} ${hoverClasses} ${transition}`;
   return (
     <button type={type} className={activeClasses} onClick={onClick}>
