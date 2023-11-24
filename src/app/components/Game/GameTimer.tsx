@@ -9,8 +9,8 @@ interface Props {
 }
 
 const GameTimer = ({ isRoundActive, handleSetRoundIsActive }: Props) => {
-  const { roundLengthInSeconds } = useAppContext();
-  const [timeLeft, setTimeLeft] = useState(roundLengthInSeconds);
+  const { gameSettings } = useAppContext();
+  const [timeLeft, setTimeLeft] = useState(gameSettings.lengthOfRounds);
   const [roundComplete, setRoundComplete] = useState(false);
   const [bgColor, setBgColor] = useState("transparent");
   const timerRef = useRef<ReturnType<typeof setInterval>>();
@@ -30,7 +30,7 @@ const GameTimer = ({ isRoundActive, handleSetRoundIsActive }: Props) => {
   useEffect(() => {
     if (isRoundActive) {
       setRoundComplete(false);
-      setTimeLeft(roundLengthInSeconds);
+      setTimeLeft(gameSettings.lengthOfRounds);
       setBgColor("transparent");
       timerRef.current = setInterval(() => {
         setTimeLeft((prevTime) => {
@@ -44,6 +44,10 @@ const GameTimer = ({ isRoundActive, handleSetRoundIsActive }: Props) => {
             clearInterval(timerRef.current);
             setRoundComplete(true);
             setBgColor("danger");
+            const timerId = setTimeout(() => {
+              setBgColor("transparent");
+              clearTimeout(timerId);
+            }, 5000);
           }
           return prevTime - 1;
         });
@@ -61,11 +65,11 @@ const GameTimer = ({ isRoundActive, handleSetRoundIsActive }: Props) => {
     }
   }, [roundComplete]);
 
-  console.log("GAME TIMER", timeLeft, isRoundActive);
-
   return (
     <TextContainer>
-      <div className={`w-full flex justify-center bg-${bgColor} rounded p-4`}>
+      <div
+        className={`w-full flex justify-center bg-${bgColor} rounded p-4 transition-colors duration-300 ease-in-out`}
+      >
         <p className="text-3xl">{renderTime(timeLeft)}</p>
       </div>
     </TextContainer>
