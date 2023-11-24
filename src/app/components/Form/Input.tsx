@@ -3,18 +3,12 @@ import React from "react";
 interface Props {
   name: string;
   value: string;
-  index: number;
-  onChange: (index: number, value: React.FormEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ name, value, index, onChange }: Props) => {
+const Input = ({ name, value, onChange }: Props) => {
   return (
-    <input
-      value={value}
-      name={name}
-      onChange={(e) => onChange(index, e)}
-      className="p-2 outline-secondLight"
-    />
+    <input name={name} value={value} onChange={onChange} className="p-2" />
   );
 };
 
