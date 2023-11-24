@@ -16,8 +16,16 @@
     "title": "Welcome to A Letter Game!",
     "subtitle": "En bokstavslek man kan spela med familjen, eller i alla fall delar av den.",
     "message": "Det är du själv som bestämmer hur spelet ska spelas genom att bestämma kategorier, betänktetid och lag. Det kan vara bra att börja med att läsa igenom reglerna så ni vet hur man spelar.",
-    "new_game_button_text": "Nytt spel",
-    "rules_button_text": "Till reglerna"
+    "links": {
+      "new_game": {
+        "text": "New Game",
+        "href": "/game"
+      },
+      "rules": {
+        "text": "Read the rules",
+        "href": "/rules"
+      }
+    }
   },
   "About": {
     "title": "About A Letter Game"

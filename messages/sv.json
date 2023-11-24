@@ -19,7 +19,7 @@
     "links": {
       "new_game": {
         "text": "Nytt spel",
-        "href": "/game"
+        "href": "/game/new-game"
       },
       "rules": {
         "text": "Läs reglerna",
@@ -32,5 +32,15 @@
   },
   "Rules": {
     "title": "Regler"
+  },
+  "Game": {
+    "generate_letter_button_text": "Nästa bokstav",
+    "initial_generate_letter_button_text": "Första bokstaven",
+    "new_game": {
+      "title": "Nytt spel",
+      "number_of_players": "Hur många spelare?",
+      "input_title": "Spelare ",
+      "input_label": "Namn"
+    }
   }
 }
