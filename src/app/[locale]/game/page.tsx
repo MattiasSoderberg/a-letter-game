@@ -1,13 +1,14 @@
-import { H1 } from "../../components/Typography";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 import MainContainer from "../../components/containers/MainContainer";
-import TextContainer from "../../components/containers/TextContainer";
+import Game from "../../components/Game/Game";
 
-export default function Game() {
+export default function GamePage() {
+  const messages = useMessages();
   return (
     <MainContainer>
-      <TextContainer>
-        <H1>Game</H1>
-      </TextContainer>
+      <NextIntlClientProvider messages={messages}>
+        <Game />
+      </NextIntlClientProvider>
     </MainContainer>
   );
 }
