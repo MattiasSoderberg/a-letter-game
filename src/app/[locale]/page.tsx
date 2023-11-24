@@ -7,9 +7,7 @@ import LinkButton from "../components/Link/LinkButton";
 
 export default function Home() {
   const t = useTranslations("Index");
-  // const links = useTranslations("Index.links");
-  // console.log(links);
-  console.log(t("links.new_game.href"));
+
   return (
     <MainContainer>
       <TextContainer>
