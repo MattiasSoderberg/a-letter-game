@@ -3,6 +3,12 @@ import React, { useEffect, useState } from "react";
 import { TextSmall } from "../Typography";
 import ButtonStandard from "../Button/variants/ButtonStandard";
 import { useAppContext } from "@/context/AppContext";
+import ButtonNaked from "../Button/variants/ButtonNaked";
+import {
+  MdExposureNeg1,
+  MdExposurePlus1,
+  MdExposurePlus2,
+} from "react-icons/md";
 
 interface Props {
   name: string;
@@ -32,27 +38,15 @@ const PlayerCard = ({ name, points, index }: Props) => {
         <TextSmall>{playerScore}</TextSmall>
       </div>
       <div className="flex gap-2">
-        <ButtonStandard
-          onClick={() => onClick(0)}
-          size="xs"
-          paddings="px-2 py-1"
-        >
-          0
-        </ButtonStandard>
-        <ButtonStandard
-          onClick={() => onClick(1)}
-          size="xs"
-          paddings="px-2 py-1"
-        >
-          1
-        </ButtonStandard>
-        <ButtonStandard
-          onClick={() => onClick(2)}
-          size="xs"
-          paddings="px-2 py-1"
-        >
-          2
-        </ButtonStandard>
+        <ButtonNaked onClick={() => onClick(-1)} borders paddings="p-1">
+          <MdExposureNeg1 />
+        </ButtonNaked>
+        <ButtonNaked onClick={() => onClick(1)} borders paddings="p-1">
+          <MdExposurePlus1 />
+        </ButtonNaked>
+        <ButtonNaked onClick={() => onClick(2)} borders paddings="p-1">
+          <MdExposurePlus2 />
+        </ButtonNaked>
       </div>
     </div>
   );
