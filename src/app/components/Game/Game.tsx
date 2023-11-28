@@ -7,6 +7,7 @@ import PlayerCard from "./PlayerCard";
 import LetterGenerator from "./LetterGenerator";
 import { useTranslations } from "next-intl";
 import GameTimer from "./GameTimer";
+import PlayerCardDrawer from "./PlayerCardDrawer";
 
 const Game = () => {
   const [currentLetter, setCurrentLetter] = useState("?");
@@ -35,14 +36,20 @@ const Game = () => {
   return (
     <div className="w-full h-full flex flex-col gap-10">
       <div className="flex gap-4">
-        {players.map((player, index) => (
-          <PlayerCard
-            key={player.name + index}
-            name={player.name}
-            points={player.points}
-            index={index}
-          />
-        ))}
+        {players.length > 2 ? (
+          <PlayerCardDrawer players={players} />
+        ) : (
+          <div className="w-full flex justify-between">
+            {players.map((player, index) => (
+              <PlayerCard
+                key={player.name + index}
+                name={player.name}
+                points={player.points}
+                index={index}
+              />
+            ))}
+          </div>
+        )}
       </div>
       <GameTimer
         isRoundActive={isRoundActive}
