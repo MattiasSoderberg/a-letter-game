@@ -9,6 +9,7 @@ interface Props {
   borderRadius?: string;
   hovers?: string;
   classNames?: string;
+  size?: "lg" | "sm" | "xs";
   onClick?: () => void;
 }
 
