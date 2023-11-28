@@ -1,21 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import NumPlayers from "./NumPlayers";
 import PlayersForm from "./PlayersForm";
-import { useAppContext } from "@/context/AppContext";
+import { GameSettings, useAppContext } from "@/context/AppContext";
 import { useRouter } from "@/navigation";
-
-export type Player = {
-  name: string;
-  points: number;
-};
-
-export type GameSettings = {
-  numberOfPlayers: number;
-  repeatingLetters: boolean;
-  numberOfRounds: number;
-  lengthOfRounds: number;
-};
+import SettingsForm from "./SettingsForm";
 
 const NewGameForm = () => {
   const { players, handleSetPlayers, gameSettings, handleSetGameSettings } =
@@ -50,7 +38,7 @@ const NewGameForm = () => {
           onSubmit={onPlayersFormSubmit}
         />
       ) : (
-        <NumPlayers
+        <SettingsForm
           gameSettings={gameSettings}
           onSettingsFormSubmit={onSettingsFormSubmit}
         />
