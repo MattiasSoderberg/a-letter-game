@@ -10,11 +10,12 @@ export type Player = {
   points: number;
 };
 
-type GameSettings = {
+export type GameSettings = {
   numberOfPlayers: number;
   repeatingLetters: boolean;
   numberOfRounds: number;
   lengthOfRounds: number;
+  categories: string[];
 };
 
 interface AppContextType {
@@ -51,6 +52,7 @@ export const AppContextProvider = ({ children }: Props) => {
     repeatingLetters: true,
     numberOfRounds: 10,
     lengthOfRounds: 30,
+    categories: [""],
   });
 
   const handleOnMenuOpen = () => {
