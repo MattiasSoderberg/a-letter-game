@@ -18,7 +18,7 @@ const Game = () => {
 
   const handleSetCurrentLetter = (letter: string) => {
     setCurrentLetter(letter);
-    if (letter !== "?") {
+    if (letter !== "?" && letter !== "") {
       setIsRoundActive(true);
     }
   };
