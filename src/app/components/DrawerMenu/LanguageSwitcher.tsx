@@ -14,7 +14,7 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="w-max h-full">
+    <div className="w-max h-full flex flex-col gap-2">
       <label>
         <TextLarge>{t("language")}</TextLarge>
       </label>
