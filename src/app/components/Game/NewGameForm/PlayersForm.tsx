@@ -1,8 +1,10 @@
 import React from "react";
-import { Player } from "./NewGameForm";
-import Input from "../../Form/InputWIndex";
+// import Input from "../../Form/InputWIndex";
 import { TextLarge } from "../../Typography";
 import ButtonStandard from "../../Button/variants/ButtonStandard";
+import { Player } from "@/context/AppContext";
+import InputWIndex from "../../Form/InputWIndex";
+import { useTranslations } from "next-intl";
 
 interface Props {
   players: Player[];
@@ -11,6 +13,7 @@ interface Props {
 }
 
 const PlayersForm = ({ players, handleSetPlayers, onSubmit }: Props) => {
+  const t = useTranslations("Game.new_game.players_form");
   const handleOnChange = (
     index: number,
     event: React.FormEvent<HTMLInputElement>
@@ -36,7 +39,7 @@ const PlayersForm = ({ players, handleSetPlayers, onSubmit }: Props) => {
               <TextLarge>{`Spelare ${index + 1}`}</TextLarge>
               <div className="flex flex-col gap-2">
                 <label htmlFor={`input${index}`}>Namn</label>
-                <Input
+                <InputWIndex
                   name="name"
                   value={player.name}
                   onChange={handleOnChange}
@@ -45,7 +48,7 @@ const PlayersForm = ({ players, handleSetPlayers, onSubmit }: Props) => {
               </div>
             </div>
           ))}
-        <ButtonStandard type="submit">Starta</ButtonStandard>
+        <ButtonStandard type="submit">{t("submit_button_text")}</ButtonStandard>
       </form>
     </div>
   );
