@@ -12,8 +12,9 @@ const InputWIndex = ({ name, value, index, onChange }: Props) => {
     <input
       value={value}
       name={name}
+      id={name}
       onChange={(e) => onChange(index, e)}
-      className="p-2 outline-secondLight"
+      className="w-full p-2 outline-secondLight"
     />
   );
 };
