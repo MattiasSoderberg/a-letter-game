@@ -54,8 +54,6 @@ const LetterGenerator = ({
     };
   }, []);
 
-  console.log("IN LETTER GENERATOR", currentLetter);
-
   return (
     <TextContainer>
       <div className="w-full flex justify-center p-6">
