@@ -8,7 +8,13 @@ interface Props {
 
 const Checkbox = ({ name, checked, onChange }: Props) => {
   return (
-    <input type="checkbox" name={name} checked={checked} onChange={onChange} />
+    <input
+      type="checkbox"
+      name={name}
+      id={name}
+      checked={checked}
+      onChange={onChange}
+    />
   );
 };
 
