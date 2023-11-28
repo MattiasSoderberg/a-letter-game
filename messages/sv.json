@@ -38,9 +38,20 @@
     "initial_generate_letter_button_text": "Första bokstaven",
     "new_game": {
       "title": "Nytt spel",
-      "number_of_players": "Hur många spelare?",
-      "input_title": "Spelare ",
-      "input_label": "Namn"
+      "settings_form": {
+        "number_of_players_label": "Hur många spelare?",
+        "repeating_letters_label": "Upprepande bokstäver?",
+        "number_of_rounds_label": "Antal omgångar",
+        "length_of_rounds_label": "Omgångarnas längd",
+        "categories_label": "Kategorier",
+        "add_category_button_text": "Ny kategori",
+        "submit_button_text": "Nästa"
+      },
+      "players_form": {
+        "input_title": "Spelare ",
+        "input_label": "Namn",
+        "submit_button_text": "Starta"
+    }
     }
   }
 }
