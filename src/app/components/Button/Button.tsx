@@ -8,6 +8,7 @@ interface Props {
   paddings?: string;
   borders?: string;
   borderRadius?: string;
+  classNames?: string;
   hovers?: string;
   transition?: string;
   size?: "lg" | "sm" | "xs";
@@ -22,6 +23,7 @@ const Button = ({
   paddings = "px-10 py-5",
   borders = "",
   borderRadius = "rounded-lg",
+  classNames,
   hovers,
   transition = "transition-all duration-150 ease-in",
   size = "lg",
@@ -34,7 +36,7 @@ const Button = ({
   const hoverClasses = hovers ? hovers : `hover:bg-${bgColor}Main`;
   const baseClasses = `${fonts} ${
     size === "lg" ? paddings : size === "sm" ? "px-7 py-3" : "px-2 py-1"
-  } ${borderRadius} ${borders}`;
+  } ${borderRadius} ${borders} ${classNames}`;
   const activeClasses = `${baseClasses} bg-${background} text-${color} ${hoverClasses} ${transition}`;
   return (
     <button type={type} className={activeClasses} onClick={onClick}>
