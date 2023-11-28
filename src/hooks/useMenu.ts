@@ -2,14 +2,14 @@ import React from "react";
 import { useAppContext } from "@/context/AppContext";
 
 const useMenu = () => {
-  const { handleOnOpen, handleOnClose } = useAppContext();
+  const { handleOnMenuOpen, handleOnMenuClose } = useAppContext();
 
   const openMenu = () => {
-    handleOnOpen();
+    handleOnMenuOpen();
   };
 
   const closeMenu = () => {
-    handleOnClose();
+    handleOnMenuClose();
   };
 
   return { openMenu, closeMenu };
