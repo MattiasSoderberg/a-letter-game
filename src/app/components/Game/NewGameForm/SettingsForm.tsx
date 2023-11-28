@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { H2, TextLarge } from "../../Typography";
+import React, { useState } from "react";
 import TextContainer from "../../containers/TextContainer";
 import Input from "../../Form/Input";
 import Checkbox from "../../Form/Checkbox";
-import { GameSettings } from "./NewGameForm";
 import ButtonStandard from "../../Button/variants/ButtonStandard";
+import { GameSettings } from "@/context/AppContext";
+import DynamicInput from "../../Form/DynamicInput";
+import { useTranslations } from "next-intl";
+import LabelWrapper from "../../Form/LabelWrapper";
 
 interface Props {
   gameSettings: GameSettings;
   onSettingsFormSubmit: (settings: GameSettings) => void;
 }
 
-const NumPlayers = ({ gameSettings, onSettingsFormSubmit }: Props) => {
+const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
   const [numberOfPlayers, setNumberOfPlayers] = useState(0);
   const [repeatingLetters, setRepeatingLetters] = useState(
     gameSettings.repeatingLetters
@@ -19,9 +21,11 @@ const NumPlayers = ({ gameSettings, onSettingsFormSubmit }: Props) => {
   const [numberOfRounds, setNumberOfRounds] = useState<number>(
     gameSettings.numberOfRounds
   );
-  const [lengthOfRounds, setLengthOfRounds] = useState(
+  const [lengthOfRounds, setLengthOfRounds] = useState<number>(
     gameSettings.lengthOfRounds
   );
+  const [categories, setCategories] = useState(gameSettings.categories);
+  const t = useTranslations("Game.new_game.settings_form");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,6 +34,7 @@ const NumPlayers = ({ gameSettings, onSettingsFormSubmit }: Props) => {
       repeatingLetters,
       numberOfRounds,
       lengthOfRounds,
+      categories,
     };
     onSettingsFormSubmit(settings);
   };
@@ -50,22 +55,39 @@ const NumPlayers = ({ gameSettings, onSettingsFormSubmit }: Props) => {
     setRepeatingLetters(e.target.checked);
   };
 
-  // useEffect(() => {
-  //   const { repeatingLetters, numberOfRounds, lengthOfRounds } = gameSettings;
-  //   setRepeatingLetters(repeatingLetters);
-  //   setNumberOfRounds(numberOfRounds);
-  //   setLengthOfRounds(lengthOfRounds);
-  // }, []);
+  const handleOnCategorisChange = (
+    index: number,
+    e: React.FormEvent<HTMLInputElement>
+  ) => {
+    const data = [...categories];
+    data[index] = e.currentTarget.value;
+    setCategories([...data]);
+  };
+
+  const handleOnAddCategory = () => {
+    setCategories((prev) => [...prev, ""]);
+  };
+
+  const handleOnRemoveCategory = (index: number) => {
+    if (categories.length <= 1) {
+      const data = [...categories];
+      data[index] = "";
+      setCategories([...data]);
+    } else {
+      setCategories(categories.filter((_, i) => i !== index));
+    }
+  };
 
   return (
     <TextContainer>
       <form className="w-full flex flex-col gap-10" onSubmit={onSubmit}>
-        <div className="w-full flex justify-between">
-          <label>
-            <TextLarge>Hur många spelare?</TextLarge>
-          </label>
+        <LabelWrapper
+          label={t("number_of_players_label")}
+          name="numberOfPlayers"
+        >
           <select
             value={numberOfPlayers}
+            name="numberOfPlayers"
             onChange={numberOfPlayersOnChange}
             className="w-max py-1 px-2 outline-firstDark border border-1 border-firstLight rounded relative"
           >
@@ -77,44 +99,52 @@ const NumPlayers = ({ gameSettings, onSettingsFormSubmit }: Props) => {
               );
             })}
           </select>
-        </div>
-        <div className="w-full flex justify-between">
-          <label>
-            <TextLarge>Upprepande bokstäver?</TextLarge>
-          </label>
+        </LabelWrapper>
+        <LabelWrapper
+          label={t("repeating_letters_label")}
+          name="repeatingLetters"
+        >
           <Checkbox
             name="repeatingLetters"
             checked={repeatingLetters}
             onChange={handleCheckboxOnChange}
           />
-        </div>
-        <div className="w-full flex justify-between">
-          <label>
-            <TextLarge>Antal omgångar</TextLarge>
-          </label>
+        </LabelWrapper>
+        <LabelWrapper label={t("number_of_rounds_label")} name="numberOfRounds">
           <Input
             name="numberOfRounds"
             value={`${numberOfRounds}`}
             onChange={numOfRoundsOnChange}
           />
-        </div>
-        <div className="w-full flex justify-between">
-          <label>
-            <TextLarge>Tid per omgång</TextLarge>
-          </label>
+        </LabelWrapper>
+        <LabelWrapper label={t("length_of_rounds_label")} name="lengthOfRounds">
           <Input
             name="lengthOfRounds"
             value={`${lengthOfRounds}`}
             onChange={lengthOfRoundOnChange}
           />
-        </div>
+        </LabelWrapper>
+        <LabelWrapper
+          label={t("categories_label")}
+          name="categories"
+          horizontal
+        >
+          <DynamicInput
+            name="categories"
+            buttonText={t("add_category_button_text")}
+            inputArray={categories}
+            onChange={handleOnCategorisChange}
+            onAddClick={handleOnAddCategory}
+            onRemoveClick={handleOnRemoveCategory}
+          />
+        </LabelWrapper>
 
         <ButtonStandard type="submit" size="sm">
-          Vidare
+          {t("submit_button_text")}
         </ButtonStandard>
       </form>
     </TextContainer>
   );
 };
 
-export default NumPlayers;
+export default SettingsForm;
