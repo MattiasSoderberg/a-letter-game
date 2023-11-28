@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-type Player = {
+export type Player = {
   name: string;
   points: number;
 };
@@ -18,9 +18,12 @@ type GameSettings = {
 };
 
 interface AppContextType {
-  handleOnOpen: () => void;
-  handleOnClose: () => void;
+  handleOnMenuOpen: () => void;
+  handleOnMenuClose: () => void;
   isMenuOpen: boolean;
+  isPlayerCardsDrawerOpen: boolean;
+  handleOnPlayerCardsDrawerOpen: () => void;
+  handleOnPlayerCardsDrawerClose: () => void;
   players: Player[];
   handleSetPlayers: (players: Player[]) => void;
   gameSettings: GameSettings;
@@ -41,6 +44,7 @@ export const useAppContext = () => {
 
 export const AppContextProvider = ({ children }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isPlayerCardsDrawerOpen, setIsPlayerCardsOpen] = useState(false);
   const [players, setPlayers] = useState<Player[]>([]);
   const [gameSettings, setGameSettings] = useState<GameSettings>({
     numberOfPlayers: 0,
@@ -49,12 +53,20 @@ export const AppContextProvider = ({ children }: Props) => {
     lengthOfRounds: 30,
   });
 
-  const handleOnOpen = () => {
+  const handleOnMenuOpen = () => {
     setIsMenuOpen(true);
   };
 
-  const handleOnClose = () => {
+  const handleOnMenuClose = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleOnPlayerCardsDrawerOpen = () => {
+    setIsPlayerCardsOpen(true);
+  };
+
+  const handleOnPlayerCardsDrawerClose = () => {
+    setIsPlayerCardsOpen(false);
   };
 
   const handleSetPlayers = (players: Player[]) => {
@@ -67,8 +79,11 @@ export const AppContextProvider = ({ children }: Props) => {
 
   const value = {
     isMenuOpen,
-    handleOnOpen,
-    handleOnClose,
+    handleOnMenuOpen,
+    handleOnMenuClose,
+    isPlayerCardsDrawerOpen,
+    handleOnPlayerCardsDrawerOpen,
+    handleOnPlayerCardsDrawerClose,
     handleSetPlayers,
     players,
     handleSetGameSettings,
