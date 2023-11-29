@@ -15,7 +15,7 @@ export type GameSettings = {
   repeatingLetters: boolean;
   numberOfRounds: number;
   lengthOfRounds: number;
-  categories: string[];
+  categories: { value: string }[];
 };
 
 interface AppContextType {
@@ -48,11 +48,11 @@ export const AppContextProvider = ({ children }: Props) => {
   const [isPlayerCardsDrawerOpen, setIsPlayerCardsOpen] = useState(false);
   const [players, setPlayers] = useState<Player[]>([]);
   const [gameSettings, setGameSettings] = useState<GameSettings>({
-    numberOfPlayers: 0,
+    numberOfPlayers: 2,
     repeatingLetters: true,
     numberOfRounds: 10,
     lengthOfRounds: 30,
-    categories: [""],
+    categories: [{ value: "" }],
   });
 
   const handleOnMenuOpen = () => {
