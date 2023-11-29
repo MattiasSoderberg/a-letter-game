@@ -45,7 +45,13 @@
         "length_of_rounds_label": "Omgångarnas längd",
         "categories_label": "Kategorier",
         "add_category_button_text": "Ny kategori",
-        "submit_button_text": "Nästa"
+        "submit_button_text": "Nästa",
+        "error_messages": {
+          "number_of_players": "Mellan 2 och 10 spelare",
+          "number_of_rounds": "Mellan 3 och 99 omgångar",
+          "length_of_rounds": "Mellan 10 och 999 sekunder",
+          "categories": "Minst 1 kategori"
+        }
       },
       "players_form": {
         "input_title": "Spelare ",
