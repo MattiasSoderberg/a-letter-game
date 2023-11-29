@@ -6,12 +6,14 @@ import { useRouter } from "@/navigation";
 import SettingsForm from "./SettingsForm";
 
 const NewGameForm = () => {
+  const [isSettingsSubmitted, setIsSettingsSubmitted] = useState(false);
   const { players, handleSetPlayers, gameSettings, handleSetGameSettings } =
     useAppContext();
   const router = useRouter();
 
   const onSettingsFormSubmit = (settings: GameSettings) => {
     handleSetGameSettings(settings);
+    setIsSettingsSubmitted(true);
   };
 
   const onPlayersFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,7 +33,7 @@ const NewGameForm = () => {
 
   return (
     <>
-      {gameSettings.numberOfPlayers > 0 ? (
+      {isSettingsSubmitted ? (
         <PlayersForm
           players={players}
           handleSetPlayers={handleSetPlayers}
