@@ -14,7 +14,7 @@ export default function NewGame() {
 
   return (
     <MainContainer>
-      <TextContainer>
+      <TextContainer shadowColor="secondLighter">
         <H1>{t("title")}</H1>
       </TextContainer>
       <NextIntlClientProvider messages={messages}>
