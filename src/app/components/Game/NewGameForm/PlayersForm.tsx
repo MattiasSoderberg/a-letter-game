@@ -46,7 +46,11 @@ const PlayersForm = ({ numberOfPlayers, onPlayersFormSubmit }: Props) => {
     name: "players",
   });
   const onSubmit: SubmitHandler<PlayersFormValues> = (data) => {
-    onPlayersFormSubmit([...data.players]);
+    const players = data.players.map((player) => ({
+      ...player,
+      name: player.name.at(0)?.toUpperCase() + player.name.slice(1),
+    }));
+    onPlayersFormSubmit(players);
   };
 
   return (
