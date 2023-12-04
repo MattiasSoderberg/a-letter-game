@@ -1,56 +1,81 @@
 import React from "react";
-// import Input from "../../Form/InputWIndex";
-import { TextLarge } from "../../Typography";
+import { H2 } from "../../Typography";
 import ButtonStandard from "../../Button/variants/ButtonStandard";
 import { Player } from "@/context/AppContext";
-import InputWIndex from "../../Form/InputWIndex";
 import { useTranslations } from "next-intl";
+import {
+  FieldValues,
+  SubmitHandler,
+  useFieldArray,
+  useForm,
+} from "react-hook-form";
+import TextContainer from "../../containers/TextContainer";
+import LabelWrapper from "../../Form/LabelWrapper";
+import Input from "../../Form/Input";
 
 interface Props {
-  players: Player[];
-  handleSetPlayers: (players: Player[]) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  numberOfPlayers: number;
+  onPlayersFormSubmit: (players: Player[]) => void;
 }
 
-const PlayersForm = ({ players, handleSetPlayers, onSubmit }: Props) => {
+export type PlayersFormValues = {
+  players: Player[];
+};
+
+const PlayersForm = ({ numberOfPlayers, onPlayersFormSubmit }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<PlayersFormValues>({
+    defaultValues: {
+      players: Array.from(Array(numberOfPlayers) as Player[]).fill({
+        name: "",
+        points: 0,
+      }),
+    },
+    mode: "onBlur",
+  });
   const t = useTranslations("Game.new_game.players_form");
-  const handleOnChange = (
-    index: number,
-    event: React.FormEvent<HTMLInputElement>
-  ) => {
-    const data = [...players];
-    data[index];
-    data[index]["name"] = event.currentTarget.value;
-    handleSetPlayers(data);
+  const rules = {
+    required: t("error_messages.player_name"),
+  };
+  const { fields } = useFieldArray({
+    control,
+    name: "players",
+  });
+  const onSubmit: SubmitHandler<PlayersFormValues> = (data) => {
+    onPlayersFormSubmit([...data.players]);
   };
 
   return (
-    <div className="w-full h-full flex flex-col gap-6 mb-6 overflow-hidden">
+    <TextContainer>
+      <H2>{`${t("input_title")}`}</H2>
       <form
-        className="w-full h-full flex flex-col gap-6 pb-10 overflow-y-auto"
-        onSubmit={(e) => onSubmit(e)}
+        className="w-full h-full flex flex-col gap-6"
+        onSubmit={handleSubmit(onSubmit)}
       >
-        {players.length > 0 &&
-          players.map((player, index) => (
-            <div
-              key={index}
-              className="w-full h-max flex flex-col gap-4 p-4 bg-textContainerBG rounded shadow-md shadow-secondLight"
-            >
-              <TextLarge>{`Spelare ${index + 1}`}</TextLarge>
-              <div className="flex flex-col gap-2">
-                <label htmlFor={`input${index}`}>Namn</label>
-                <InputWIndex
-                  name="name"
-                  value={player.name}
-                  onChange={handleOnChange}
-                  index={index}
-                />
-              </div>
-            </div>
-          ))}
+        {fields.map((field, index) => (
+          <LabelWrapper
+            key={field.id}
+            name={`players.${index}.name`}
+            label={`${t("input_label")} ${index + 1}`}
+            errors={
+              (errors?.players?.[index]?.name as FieldValues) || undefined
+            }
+            horizontal
+          >
+            <Input<PlayersFormValues>
+              name={`players.${index}.name` as const}
+              register={register}
+              rules={rules}
+            />
+          </LabelWrapper>
+        ))}
         <ButtonStandard type="submit">{t("submit_button_text")}</ButtonStandard>
       </form>
-    </div>
+    </TextContainer>
   );
 };
 
