@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { TextSmall } from "../Typography";
-import ButtonStandard from "../Button/variants/ButtonStandard";
 import { useAppContext } from "@/context/AppContext";
 import ButtonNaked from "../Button/variants/ButtonNaked";
 import {
@@ -38,13 +37,28 @@ const PlayerCard = ({ name, points, index }: Props) => {
         <TextSmall>{playerScore}</TextSmall>
       </div>
       <div className="flex gap-2">
-        <ButtonNaked onClick={() => onClick(-1)} borders paddings="p-1">
+        <ButtonNaked
+          onClick={() => onClick(-1)}
+          borders
+          paddings="p-1"
+          borderRadius="rounded-lg"
+        >
           <MdExposureNeg1 />
         </ButtonNaked>
-        <ButtonNaked onClick={() => onClick(1)} borders paddings="p-1">
+        <ButtonNaked
+          onClick={() => onClick(1)}
+          borders
+          paddings="p-1"
+          borderRadius="rounded-lg"
+        >
           <MdExposurePlus1 />
         </ButtonNaked>
-        <ButtonNaked onClick={() => onClick(2)} borders paddings="p-1">
+        <ButtonNaked
+          onClick={() => onClick(2)}
+          borders
+          paddings="p-1"
+          borderRadius="rounded-lg"
+        >
           <MdExposurePlus2 />
         </ButtonNaked>
       </div>
