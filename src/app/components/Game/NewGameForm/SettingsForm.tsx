@@ -23,28 +23,24 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
     formState: { errors },
   } = useForm<GameSettings>({
     defaultValues: {
-      numberOfPlayers: gameSettings.numberOfPlayers,
-      repeatingLetters: gameSettings.repeatingLetters,
-      numberOfRounds: gameSettings.numberOfRounds,
-      lengthOfRounds: gameSettings.lengthOfRounds,
-      categories: gameSettings.categories,
+      ...gameSettings,
     },
-    reValidateMode: "onBlur",
+    mode: "onBlur",
   });
   const t = useTranslations("Game.new_game.settings_form");
   const registerOptions = {
     numberOfPlayers: {
-      setValueAs: (v: string) => parseInt(v),
+      valueAsNumber: true,
       min: { value: 2, message: t("error_messages.number_of_players") },
       max: { value: 10, message: t("error_messages.number_of_players") },
     },
     numberOfRounds: {
-      setValueAs: (v: string) => parseInt(v),
+      valueAsNumber: true,
       min: { value: 3, message: t("error_messages.number_of_rounds") },
       max: { value: 99, message: t("error_messages.number_of_rounds") },
     },
     lengthOfRounds: {
-      setValueAs: (v: string) => parseInt(v),
+      valueAsNumber: true,
       min: { value: 10, message: t("error_messages.length_of_rounds") },
       max: { value: 999, message: t("error_messages.length_of_rounds") },
       message: t("error_messages.length_of_rounds"),
@@ -57,13 +53,16 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
           }
         },
       },
-      inputOptions: { minLength: { value: 1, message: "får inte vara tom" } },
     },
   };
 
   const onSubmit: SubmitHandler<GameSettings> = (data) => {
     const payload = {
       ...data,
+      numberOfPlayers:
+        typeof data.numberOfPlayers === "string"
+          ? parseInt(data.numberOfPlayers)
+          : data.numberOfPlayers,
       categories: data.categories.filter((category) => category.value !== ""),
     };
     onSettingsFormSubmit(payload);
@@ -83,7 +82,7 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
           <Select
             name="numberOfPlayers"
             register={register}
-            defaultValue={gameSettings.numberOfPlayers}
+            registerOptions={registerOptions.numberOfPlayers}
           />
         </LabelWrapper>
         <LabelWrapper
@@ -98,12 +97,12 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
           name="numberOfRounds"
           errors={errors}
         >
-          <Input
+          <Input<GameSettings>
             name="numberOfRounds"
             register={register}
             maxLength={2}
             widthFull={false}
-            registerOptions={registerOptions}
+            rules={registerOptions.numberOfRounds}
           />
         </LabelWrapper>
         <LabelWrapper
@@ -111,19 +110,19 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
           name="lengthOfRounds"
           errors={errors}
         >
-          <Input
+          <Input<GameSettings>
             name="lengthOfRounds"
             register={register}
             maxLength={3}
             widthFull={false}
-            registerOptions={registerOptions}
+            rules={registerOptions.lengthOfRounds}
           />
         </LabelWrapper>
         <LabelWrapper
           label={t("categories_label")}
           name="categories"
-          errors={errors}
           horizontal
+          errors={errors}
         >
           <DynamicInput
             name="categories"
