@@ -2,7 +2,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ButtonNaked from "../Button/variants/ButtonNaked";
-import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+import {
+  MdArrowBackIos,
+  MdArrowForwardIos,
+  MdOutlineScoreboard,
+} from "react-icons/md";
 import usePlayerCardsDrawer from "@/hooks/usePlayerCardsDrawer";
 import { Player, useAppContext } from "@/context/AppContext";
 import PlayerCard from "./PlayerCard";
@@ -18,14 +22,14 @@ const PlayerCardDrawer = ({ players }: Props) => {
 
   return (
     <motion.div
-      initial={{ x: "-97%" }}
-      animate={isPlayerCardsDrawerOpen ? { x: -20 } : { x: "-97%" }}
+      initial={{ x: "-350px" }}
+      animate={isPlayerCardsDrawerOpen ? { x: 0 } : { x: "-350px" }}
       transition={{ type: "spring", stiffness: 130, damping: 20 }}
-      className={`w-full h-full absolute top-0 z-50`}
+      className={`w-full h-full absolute top-0 left-0 z-50`}
     >
-      <div className="w-full h-full flex items-start relative drop-shadow-lg">
-        <div className="w-full h-full flex justify-center bg-lightMain">
-          <div className="w-full h-fit flex flex-wrap justify-between gap-6 p-6">
+      <div className="w-fit h-full flex items-start relative container-drop-shadow">
+        <div className="w-[350px] h-full flex p-5 bg-lightMain">
+          <div className="w-full h-fit flex flex-wrap justify-between gap-x-6 gap-y-10">
             {players &&
               players.map((player, index) => (
                 <PlayerCard
@@ -37,19 +41,28 @@ const PlayerCardDrawer = ({ players }: Props) => {
               ))}
           </div>
         </div>
-        <ButtonNaked
-          background="lightMain"
-          paddings="px-1 py-6"
-          borderRadius="rounded-r-lg"
-          classNames="border-l-0"
-          onClick={
-            isPlayerCardsDrawerOpen
-              ? closePlayerCardDrawer
-              : openPlayerCardDrawer
-          }
-        >
-          {isPlayerCardsDrawerOpen ? <MdArrowBackIos /> : <MdArrowForwardIos />}
-        </ButtonNaked>
+        <div className="w-[30px] min-w-fit flex">
+          <ButtonNaked
+            background="lightMain"
+            paddings="px-1 py-4"
+            borderRadius="rounded-r-lg"
+            classNames="border-l-0"
+            onClick={
+              isPlayerCardsDrawerOpen
+                ? closePlayerCardDrawer
+                : openPlayerCardDrawer
+            }
+          >
+            <div className="flex flex-col gap-2">
+              {isPlayerCardsDrawerOpen ? (
+                <MdArrowBackIos />
+              ) : (
+                <MdArrowForwardIos />
+              )}
+              <MdOutlineScoreboard />
+            </div>
+          </ButtonNaked>
+        </div>
       </div>
     </motion.div>
   );
