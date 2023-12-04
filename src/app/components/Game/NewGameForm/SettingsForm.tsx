@@ -55,6 +55,9 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
       },
     },
   };
+  const options = Array.from({ length: 8 }, (_, index) =>
+    (index + 2).toString()
+  );
 
   const onSubmit: SubmitHandler<GameSettings> = (data) => {
     const payload = {
@@ -80,6 +83,7 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
           errors={errors}
         >
           <Select
+            options={options}
             name="numberOfPlayers"
             register={register}
             registerOptions={registerOptions.numberOfPlayers}
