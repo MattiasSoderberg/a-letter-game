@@ -29,6 +29,7 @@ const PlayerCardDrawer = ({ players }: Props) => {
             {players &&
               players.map((player, index) => (
                 <PlayerCard
+                  key={player.name + index}
                   name={player.name}
                   points={player.points}
                   index={index}
