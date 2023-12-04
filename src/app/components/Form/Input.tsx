@@ -1,38 +1,72 @@
-import { GameSettings } from "@/context/AppContext";
 import React from "react";
-import { Path, UseFormRegister } from "react-hook-form";
+import { GameSettings } from "@/context/AppContext";
+import { PlayersFormValues } from "../Game/NewGameForm/PlayersForm";
+import {
+  Path,
+  UseFormRegister,
+  FieldValues,
+  Control,
+  Controller,
+  RegisterOptions,
+} from "react-hook-form";
 
-// interface Props {
-//   name: string;
-//   value: string;
-//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-// }
-
-type Props = {
-  name: Path<GameSettings>;
-  register: UseFormRegister<GameSettings>;
-  registerOptions?: any;
+type Props<T extends FieldValues> = {
+  name: Extract<Path<T>, string>;
+  register: UseFormRegister<T>;
+  control?: Control<T>;
+  rules?: RegisterOptions;
   maxLength?: number;
   widthFull?: boolean;
 };
 
-const Input = ({
+const Input = <T extends GameSettings | PlayersFormValues>({
   name,
   register,
-  registerOptions,
+  control,
+  rules,
   maxLength = 50,
   widthFull = true,
-}: Props) => {
+}: Props<T>) => {
+  const isFieldArray = control !== undefined;
+
   return (
-    <input
-      type="text"
-      id={name}
-      maxLength={maxLength}
-      {...register(name, registerOptions && registerOptions[name])}
-      className={`${
-        widthFull ? "w-full h-fit p-2" : "w-[50px] h-fit p-2"
-      } rounded-lg outline-2 outline-secondMain border border-secondLight`}
-    />
+    <>
+      {isFieldArray ? (
+        <Controller
+          name={name}
+          control={control}
+          rules={rules}
+          render={({ field }) => (
+            <>
+              <input
+                type="text"
+                id={name}
+                maxLength={maxLength}
+                {...field}
+                value={field.value ? field.value.toString() : ""}
+                className={`${
+                  widthFull
+                    ? "w-full h-fit py-1 px-2"
+                    : "w-[50px] h-fit py-1 px-2"
+                } rounded-lg outline-2 outline-secondMain border border-secondLight`}
+              />
+            </>
+          )}
+        />
+      ) : (
+        <>
+          <input
+            type="text"
+            id={name}
+            maxLength={maxLength}
+            {...register(name, rules)}
+            className={`${
+              widthFull ? "w-full h-fit py-1 px-2" : "w-[50px] h-fit py-1 px-2"
+            } rounded-lg outline-2 outline-secondMain border border-secondLight`}
+          />
+        </>
+      )}
+    </>
   );
 };
 
