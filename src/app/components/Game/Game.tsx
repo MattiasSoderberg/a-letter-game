@@ -35,7 +35,7 @@ const Game = () => {
   }, []);
 
   return (
-    <div className="w-full h-full flex flex-col gap-8 px-4">
+    <div className="w-full h-full max-h-[650px] flex flex-col justify-between gap-4 px-4">
       {players.length > 0 ? (
         <>
           <PlayerCardDrawer players={players} />

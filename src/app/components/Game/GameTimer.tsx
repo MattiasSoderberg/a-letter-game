@@ -71,11 +71,11 @@ const GameTimer = ({ isRoundActive, handleSetRoundIsActive }: Props) => {
   }, [roundComplete]);
 
   return (
-    <TextContainer shadowColor={shadowColor}>
+    <TextContainer shadowColor={shadowColor} padding={false}>
       <div
-        className={`w-full flex justify-center bg-${bgColor} rounded p-4 transition-colors duration-300 ease-in-out`}
+        className={`w-full flex justify-center bg-${bgColor} p-4 rounded transition-colors duration-300 ease-in-out`}
       >
-        <p className="text-3xl">{renderTime(timeLeft)}</p>
+        <p className="text-2xl">{renderTime(timeLeft)}</p>
       </div>
     </TextContainer>
   );

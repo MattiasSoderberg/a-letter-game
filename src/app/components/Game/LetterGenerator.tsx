@@ -56,9 +56,9 @@ const LetterGenerator = ({
 
   return (
     <TextContainer>
-      <div className="w-full flex justify-center p-6">
-        <div className="w-[200px] h-full flex flex-col items-center justify-center gap-10">
-          <div className="w-full h-[200px] flex justify-center items-center p-4 bg-textContainerBG shadow-md rounded-lg">
+      <div className="w-full flex justify-center py-4">
+        <div className="w-[200px] h-full flex flex-col gap-10">
+          <div className="w-full h-[200px] flex justify-center items-center p-4 bg-textContainerBG rounded-lg border border-firstMain">
             <p className="text-9xl text-darkMain">
               {currentLetter === "?"
                 ? currentLetter
@@ -67,7 +67,7 @@ const LetterGenerator = ({
                 : currentLetter}
             </p>
           </div>
-          <ButtonStandard onClick={generateLetter}>
+          <ButtonStandard onClick={generateLetter} size="sm">
             {currentLetter === "?"
               ? t("initial_generate_letter_button_text")
               : t("generate_letter_button_text")}

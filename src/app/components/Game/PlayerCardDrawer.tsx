@@ -22,13 +22,13 @@ const PlayerCardDrawer = ({ players }: Props) => {
 
   return (
     <motion.div
-      initial={{ x: "-350px" }}
-      animate={isPlayerCardsDrawerOpen ? { x: 0 } : { x: "-350px" }}
+      initial={{ x: "-358px" }}
+      animate={isPlayerCardsDrawerOpen ? { x: 0 } : { x: "-358px" }}
       transition={{ type: "spring", stiffness: 130, damping: 20 }}
       className={`w-full h-full absolute top-0 left-0 z-50`}
     >
       <div className="w-fit h-full flex items-start relative container-drop-shadow">
-        <div className="w-[350px] h-full flex p-5 bg-lightMain">
+        <div className="w-[358px] h-full flex p-5 bg-lightMain">
           <div className="w-full h-fit flex flex-wrap justify-between gap-x-6 gap-y-10">
             {players &&
               players.map((player, index) => (
@@ -41,7 +41,7 @@ const PlayerCardDrawer = ({ players }: Props) => {
               ))}
           </div>
         </div>
-        <div className="w-[30px] min-w-fit flex">
+        <div className="w-[30px] min-w-fit flex pt-5">
           <ButtonNaked
             background="lightMain"
             paddings="px-1 py-4"
