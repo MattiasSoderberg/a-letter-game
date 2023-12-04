@@ -9,6 +9,7 @@ import DynamicInput from "../../Form/DynamicInput";
 import ButtonStandard from "../../Button/variants/ButtonStandard";
 import Checkbox from "../../Form/Checkbox";
 import Select from "../../Form/Select";
+import { H2 } from "../../Typography";
 
 interface Props {
   gameSettings: GameSettings;
@@ -73,6 +74,7 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
 
   return (
     <TextContainer shadowColor="secondLighter">
+      <H2>{t("settings_title")}</H2>
       <form
         className="w-full h-full flex flex-col gap-10"
         onSubmit={handleSubmit(onSubmit)}

@@ -40,6 +40,7 @@
     "new_game": {
       "title": "Nytt spel",
       "settings_form": {
+        "settings_title": "Spelinställningar",
         "number_of_players_label": "Hur många spelare?",
         "repeating_letters_label": "Upprepande bokstäver?",
         "number_of_rounds_label": "Antal omgångar",
