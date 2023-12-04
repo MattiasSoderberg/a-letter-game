@@ -13,6 +13,7 @@ const GameTimer = ({ isRoundActive, handleSetRoundIsActive }: Props) => {
   const [timeLeft, setTimeLeft] = useState(gameSettings.lengthOfRounds);
   const [roundComplete, setRoundComplete] = useState(false);
   const [bgColor, setBgColor] = useState("transparent");
+  const [shadowColor, setShadowColor] = useState("lightDark");
   const timerRef = useRef<ReturnType<typeof setInterval>>();
 
   const renderTime = (time: number) => {
@@ -36,16 +37,20 @@ const GameTimer = ({ isRoundActive, handleSetRoundIsActive }: Props) => {
         setTimeLeft((prevTime) => {
           if (prevTime < 11) {
             setBgColor("thirdMain");
+            setShadowColor("thirdLight");
           }
           if (prevTime < 6) {
             setBgColor("secondLight");
+            setShadowColor("secondLighter");
           }
           if (prevTime === 1) {
             clearInterval(timerRef.current);
             setRoundComplete(true);
             setBgColor("danger");
+            setShadowColor("danger");
             const timerId = setTimeout(() => {
               setBgColor("transparent");
+              setShadowColor("lightDark");
               clearTimeout(timerId);
             }, 5000);
           }
@@ -66,7 +71,7 @@ const GameTimer = ({ isRoundActive, handleSetRoundIsActive }: Props) => {
   }, [roundComplete]);
 
   return (
-    <TextContainer>
+    <TextContainer shadowColor={shadowColor}>
       <div
         className={`w-full flex justify-center bg-${bgColor} rounded p-4 transition-colors duration-300 ease-in-out`}
       >
