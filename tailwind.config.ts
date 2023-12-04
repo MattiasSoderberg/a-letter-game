@@ -13,12 +13,18 @@ const config: Config = {
     extend: {
       colors: {
         lightMain: "#F6F6F6",
+        lightDark: "#CFCFCF",
+        darkLighter: "#525364",
+        darkLight: "#2E2F3B",
         darkMain: "#070B2F",
         firstDark: "#000D80",
-        firstMain: "#0A1FDC",
         firstLight: "#5566FF",
-        secondMain: "#7E3F94",
+        firstLighter: "#828DEB",
+        firstMain: "#0A1FDC",
         secondLight: "#C897D9",
+        secondLighter: "#E3BBF0",
+        secondMain: "#7E3F94",
+        thirdLight: "#FDFF98",
         thirdMain: "#E4E905",
         textContainerBG: "#F6F6F6E6",
         danger: "#F95252",
@@ -32,7 +38,7 @@ const config: Config = {
   safelist: [
     {
       pattern:
-        /(text|bg)-(lightMain|darkMain|firstMain|firstLight|secondMain|secondLight|thirdMain|transparent|danger)/,
+        /(text|bg|shadow)-(lightMain|lightDark|darkMain|darkLight|darkLighter|firstMain|firstLight|firstLighter|secondMain|secondLight|secondLighter|thirdMain|thirdLight|transparent|danger)/,
       variants: ["hover"],
     },
   ],
