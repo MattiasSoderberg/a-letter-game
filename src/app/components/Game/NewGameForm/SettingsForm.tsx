@@ -72,7 +72,7 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
   };
 
   return (
-    <TextContainer>
+    <TextContainer shadowColor="secondLighter">
       <form
         className="w-full h-full flex flex-col gap-10"
         onSubmit={handleSubmit(onSubmit)}

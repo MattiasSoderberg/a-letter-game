@@ -31,7 +31,7 @@ const PlayerCard = ({ name, points, index }: Props) => {
   }, [points]);
 
   return (
-    <div className="w-max h-max flex flex-col gap-2 p-4 bg-textContainerBG rounded shadow-md">
+    <div className="w-max h-max flex flex-col gap-2 p-4 bg-textContainerBG rounded-lg container-shadow shadow-lightDark">
       <div className="w-full flex justify-between">
         <TextSmall>{name}</TextSmall>
         <TextSmall>{playerScore}</TextSmall>

@@ -54,7 +54,7 @@ const PlayersForm = ({ numberOfPlayers, onPlayersFormSubmit }: Props) => {
   };
 
   return (
-    <TextContainer>
+    <TextContainer shadowColor="secondLighter">
       <H2>{`${t("input_title")}`}</H2>
       <form
         className="w-full h-full flex flex-col gap-6"
