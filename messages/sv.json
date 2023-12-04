@@ -36,6 +36,7 @@
   "Game": {
     "generate_letter_button_text": "Nästa bokstav",
     "initial_generate_letter_button_text": "Första bokstaven",
+    "categories_title": "Kategorier",
     "new_game": {
       "title": "Nytt spel",
       "settings_form": {
