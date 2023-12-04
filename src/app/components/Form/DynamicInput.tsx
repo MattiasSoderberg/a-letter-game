@@ -1,20 +1,10 @@
 "use client";
 import React, { useEffect } from "react";
-import InputWIndex from "./InputWIndex";
 import ButtonNaked from "../Button/variants/ButtonNaked";
 import { MdOutlineRemove } from "react-icons/md";
-import { Control, Path, UseFormRegister, useFieldArray } from "react-hook-form";
+import { Control, UseFormRegister, useFieldArray } from "react-hook-form";
 import { GameSettings } from "@/context/AppContext";
 import Input from "./Input";
-
-interface IProps {
-  name: string;
-  buttonText: string;
-  inputArray: string[];
-  onChange: (index: number, e: React.FormEvent<HTMLInputElement>) => void;
-  onAddClick: () => void;
-  onRemoveClick: (index: number) => void;
-}
 
 type Props = {
   name: "categories";
@@ -48,10 +38,11 @@ const DynamicInput = ({
       <ul className="w-full flex flex-col items-start gap-4">
         {fields.map((field, index) => (
           <li className="w-full flex gap-2" key={field.id}>
-            <Input
-              name={`categories.${index}.value` as const}
+            <Input<GameSettings>
+              name={`${name}.${index}.value` as const}
+              control={control}
               register={register}
-              registerOptions={registerOptions.inputOptions}
+              rules={registerOptions.inputOptions}
             />
             <ButtonNaked
               borders
