@@ -54,9 +54,12 @@
         }
       },
       "players_form": {
-        "input_title": "Spelare ",
-        "input_label": "Namn",
-        "submit_button_text": "Starta"
+        "input_title": "Namn",
+        "input_label": "Spelare",
+        "submit_button_text": "Starta",
+        "error_messages": {
+          "player_name": "Namn får inte vara tomt"
+        }
     }
     }
   }
