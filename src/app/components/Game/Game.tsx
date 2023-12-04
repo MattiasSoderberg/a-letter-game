@@ -8,11 +8,12 @@ import LetterGenerator from "./LetterGenerator";
 import { useTranslations } from "next-intl";
 import GameTimer from "./GameTimer";
 import PlayerCardDrawer from "./PlayerCardDrawer";
+import Categories from "./Categories";
 
 const Game = () => {
   const [currentLetter, setCurrentLetter] = useState("?");
   const [isRoundActive, setIsRoundActive] = useState(false);
-  const { players } = useAppContext();
+  const { players, gameSettings } = useAppContext();
   const router = useRouter();
   const t = useTranslations("Utils");
 
@@ -34,25 +35,11 @@ const Game = () => {
   }, []);
 
   return (
-    <div className="w-full h-full flex flex-col gap-10">
+    <div className="w-full h-full flex flex-col gap-8 px-4">
       {players.length > 0 ? (
         <>
-          <div className="flex gap-4">
-            {players.length > 2 ? (
-              <PlayerCardDrawer players={players} />
-            ) : (
-              <div className="w-full flex justify-between">
-                {players.map((player, index) => (
-                  <PlayerCard
-                    key={player.name + index}
-                    name={player.name}
-                    points={player.points}
-                    index={index}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
+          <PlayerCardDrawer players={players} />
+          <Categories categories={gameSettings.categories} />
           <GameTimer
             isRoundActive={isRoundActive}
             handleSetRoundIsActive={handleSetRoundIsActive}
