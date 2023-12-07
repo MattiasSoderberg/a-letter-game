@@ -126,7 +126,7 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
         </LabelWrapper>
         <LabelWrapper
           label={t("categories_label")}
-          name="categories"
+          name="categories.0.value"
           horizontal
           errors={errors}
         >
