@@ -36,7 +36,13 @@
   "Game": {
     "generate_letter_button_text": "Nästa bokstav",
     "initial_generate_letter_button_text": "Första bokstaven",
+    "finnish_game": "Avsluta spelet",
     "categories_title": "Kategorier",
+    "rounds_title": "Omgång",
+    "winner_title": "Vinnare",
+    "points": "poäng",
+    "link_button": "Tillbaka till start",
+    "no_active_game": "Inget aktivt spel",
     "new_game": {
       "title": "Nytt spel",
       "settings_form": {
@@ -62,7 +68,8 @@
         "error_messages": {
           "player_name": "Namn får inte vara tomt"
         }
-    }
-    }
+      }
+    },
+    "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö"
   }
 }
