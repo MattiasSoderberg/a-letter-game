@@ -37,7 +37,7 @@ const Button = ({
   const baseClasses = `${fonts} ${
     size === "lg" ? paddings : size === "sm" ? "px-7 py-3" : "px-2 py-1"
   } ${borderRadius} ${borders} ${classNames}`;
-  const activeClasses = `${baseClasses} bg-${background} text-${color} ${hoverClasses} ${transition}`;
+  const activeClasses = `${baseClasses} bg-${background} text-${color} ${hoverClasses} ${transition} focus:bg-${background}`;
   return (
     <button type={type} className={activeClasses} onClick={onClick}>
       {children}
