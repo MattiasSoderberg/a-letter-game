@@ -9,10 +9,26 @@ interface Props {
   as?: string;
   children: React.ReactNode;
   color?: string;
+  outlineColor?: string;
+  onClick?: () => void;
 }
 
-const LinkStyled = ({ href, as, children, color = "firstLight" }: Props) => {
-  return <Link href={href}>{children}</Link>;
+const LinkStyled = ({
+  href,
+  children,
+  color = "darkMain",
+  outlineColor = "firstMain",
+  onClick,
+}: Props) => {
+  return (
+    <Link
+      href={href}
+      className={`rounded text-${color} focus:outline focus:outline-${outlineColor}`}
+      onClick={onClick}
+    >
+      {children}
+    </Link>
+  );
 };
 
 export default LinkStyled;
