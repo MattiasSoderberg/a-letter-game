@@ -1,4 +1,5 @@
 "use client";
+import { GameSettings, gameSettingsConfig } from "@/gameConfig";
 import React, { createContext, useContext, useState } from "react";
 
 interface Props {
@@ -8,14 +9,6 @@ interface Props {
 export type Player = {
   name: string;
   points: number;
-};
-
-export type GameSettings = {
-  numberOfPlayers: number;
-  repeatingLetters: boolean;
-  numberOfRounds: number;
-  lengthOfRounds: number;
-  categories: { value: string }[];
 };
 
 interface AppContextType {
@@ -29,6 +22,7 @@ interface AppContextType {
   handleSetPlayers: (players: Player[]) => void;
   gameSettings: GameSettings;
   handleSetGameSettings: (settings: GameSettings) => void;
+  resetPlayerScore: () => void;
 }
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -47,13 +41,8 @@ export const AppContextProvider = ({ children }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPlayerCardsDrawerOpen, setIsPlayerCardsOpen] = useState(false);
   const [players, setPlayers] = useState<Player[]>([]);
-  const [gameSettings, setGameSettings] = useState<GameSettings>({
-    numberOfPlayers: 2,
-    repeatingLetters: true,
-    numberOfRounds: 10,
-    lengthOfRounds: 30,
-    categories: [{ value: "" }],
-  });
+  const [gameSettings, setGameSettings] =
+    useState<GameSettings>(gameSettingsConfig);
 
   const handleOnMenuOpen = () => {
     setIsMenuOpen(true);
@@ -79,6 +68,12 @@ export const AppContextProvider = ({ children }: Props) => {
     setGameSettings(settings);
   };
 
+  const resetPlayerScore = () => {
+    setPlayers([
+      ...players.map((player) => ({ name: player.name, points: 0 })),
+    ]);
+  };
+
   const value = {
     isMenuOpen,
     handleOnMenuOpen,
@@ -90,6 +85,7 @@ export const AppContextProvider = ({ children }: Props) => {
     players,
     handleSetGameSettings,
     gameSettings,
+    resetPlayerScore,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
