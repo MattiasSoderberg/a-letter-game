@@ -1,5 +1,4 @@
 import React from "react";
-import { GameSettings } from "@/context/AppContext";
 import { SubmitHandler, useForm } from "react-hook-form";
 import TextContainer from "../../containers/TextContainer";
 import { useTranslations } from "next-intl";
@@ -10,6 +9,7 @@ import ButtonStandard from "../../Button/variants/ButtonStandard";
 import Checkbox from "../../Form/Checkbox";
 import Select from "../../Form/Select";
 import { H2 } from "../../Typography";
+import { GameSettings } from "@/gameConfig";
 
 interface Props {
   gameSettings: GameSettings;

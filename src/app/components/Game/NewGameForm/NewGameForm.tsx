@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import PlayersForm from "./PlayersForm";
-import { GameSettings, Player, useAppContext } from "@/context/AppContext";
+import { Player, useAppContext } from "@/context/AppContext";
 import { useRouter } from "@/navigation";
 import SettingsForm from "./SettingsForm";
+import { GameSettings } from "@/gameConfig";
 
 const NewGameForm = () => {
   const [isSettingsSubmitted, setIsSettingsSubmitted] = useState(false);
