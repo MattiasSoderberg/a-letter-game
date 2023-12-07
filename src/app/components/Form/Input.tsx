@@ -1,5 +1,4 @@
 import React from "react";
-import { GameSettings } from "@/context/AppContext";
 import { PlayersFormValues } from "../Game/NewGameForm/PlayersForm";
 import {
   Path,
@@ -9,6 +8,7 @@ import {
   Controller,
   RegisterOptions,
 } from "react-hook-form";
+import { GameSettings } from "@/gameConfig";
 
 type Props<T extends FieldValues> = {
   name: Extract<Path<T>, string>;

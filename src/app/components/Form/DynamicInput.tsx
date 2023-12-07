@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import ButtonNaked from "../Button/variants/ButtonNaked";
 import { MdOutlineRemove } from "react-icons/md";
 import { Control, UseFormRegister, useFieldArray } from "react-hook-form";
-import { GameSettings } from "@/context/AppContext";
 import Input from "./Input";
+import { GameSettings } from "@/gameConfig";
 
 type Props = {
   name: "categories";

@@ -1,4 +1,4 @@
-import { GameSettings } from "@/context/AppContext";
+import { GameSettings } from "@/gameConfig";
 import React from "react";
 import { Path, UseFormRegister } from "react-hook-form";
 import { MdCheck } from "react-icons/md";
