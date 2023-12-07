@@ -15,13 +15,14 @@ const LanguageSwitcher = () => {
 
   return (
     <div className="w-max h-full flex flex-col gap-2">
-      <label>
+      <label htmlFor="language-switcher">
         <TextLarge>{t("language")}</TextLarge>
       </label>
       <select
+        id="language-switcher"
         value={locale}
         onChange={onOptionClick}
-        className="w-max p-1  outline-firstDark border border-1 border-firstLight rounded relative"
+        className="w-max py-1 px-2 outline-firstMain border border-1 border-firstLight rounded-lg relative"
       >
         {locales.map((lang) => (
           <option key={lang} value={lang}>
