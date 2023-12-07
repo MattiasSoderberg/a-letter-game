@@ -39,7 +39,7 @@ const config: Config = {
     {
       pattern:
         /(text|bg|shadow|outline)-(lightMain|lightDark|darkMain|darkLight|darkLighter|firstMain|firstLight|firstLighter|secondMain|secondLight|secondLighter|thirdMain|thirdLight|transparent|danger)/,
-      variants: ["hover", "focus"],
+      variants: ["hover", "focus", "active"],
     },
   ],
   plugins: [],
