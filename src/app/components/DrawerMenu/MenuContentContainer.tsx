@@ -7,6 +7,8 @@ import { TextRegular } from "../Typography";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslations } from "next-intl";
 import { useAppContext } from "@/context/AppContext";
+import LinkStyled from "../Link/LinkStyled";
+import Divider from "./Divider";
 
 const MenuContentContainer = () => {
   const { closeMenu } = useMenu();
@@ -22,23 +24,29 @@ const MenuContentContainer = () => {
     >
       <div className="w-full h-full flex flex-col gap-10 bg-lightMain p-10">
         <ul className="w-full h-max flex flex-col items-start gap-8">
-          <li className="w-full flex flex-col gap-2">
+          {/* <li className="w-full flex flex-col gap-2">
             <Link href="/about" onClick={closeMenu}>
               <TextRegular>{t("about")}</TextRegular>
             </Link>
-            <div className="w-full h-[1px] bg-firstDark" />
+            <div className="w-full h-[1px] bg-firstLight" />
+          </li> */}
+          <li className="w-full flex flex-col gap-2">
+            <LinkStyled href="/about" onClick={closeMenu}>
+              <TextRegular>{t("about")}</TextRegular>
+            </LinkStyled>
+            <Divider />
           </li>
           <li className="w-full flex flex-col gap-2">
-            <Link href="/rules" onClick={closeMenu}>
+            <LinkStyled href="/rules" onClick={closeMenu}>
               <TextRegular>{t("rules")}</TextRegular>
-            </Link>
-            <div className="w-full h-[1px] bg-firstDark" />
+            </LinkStyled>
+            <Divider />
           </li>
           <li className="w-full flex flex-col gap-2">
-            <Link href="/game" onClick={closeMenu}>
+            <LinkStyled href="/game" onClick={closeMenu}>
               <TextRegular>{t("play")}</TextRegular>
-            </Link>
-            <div className="w-full h-[1px] bg-firstDark" />
+            </LinkStyled>
+            <Divider />
           </li>
         </ul>
         <LanguageSwitcher />
