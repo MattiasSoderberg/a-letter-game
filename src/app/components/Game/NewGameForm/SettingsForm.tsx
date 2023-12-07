@@ -49,7 +49,7 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
     categories: {
       rules: {
         validate: (values: typeof gameSettings.categories) => {
-          if (values.length === 1 && !values[0].value) {
+          if (values.every((value) => !value.value)) {
             return t("error_messages.categories");
           }
         },
