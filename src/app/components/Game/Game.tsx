@@ -1,18 +1,16 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Player, useAppContext } from "@/context/AppContext";
-import { H2, TextLarge, TextRegular, TextSmall } from "../Typography";
+import { TextLarge } from "../Typography";
 import { useRouter } from "@/navigation";
-import PlayerCard from "./PlayerCard";
 import LetterGenerator from "./LetterGenerator";
 import { useTranslations } from "next-intl";
 import GameTimer from "./GameTimer";
 import PlayerCardDrawer from "./PlayerCardDrawer";
 import HeaderDisplay from "./HeaderDisplay";
 import usePlayerCardsDrawer from "@/hooks/usePlayerCardsDrawer";
-import TextContainer from "../containers/TextContainer";
 import ButtonStandard from "../Button/variants/ButtonStandard";
-import LinkButton from "../Link/LinkButton";
+import GameFinished from "./GameFinished";
 
 const Game = () => {
   const { players, gameSettings, resetPlayerScore } = useAppContext();
@@ -155,9 +153,10 @@ const Game = () => {
               />
               <LetterGenerator
                 alphabeth={t("alphabeth")}
+                usedLetters={usedLetters}
                 currentLetter={currentLetter}
                 letterCountDown={letterCountdown}
-                isRoundActive={isRoundActive}
+                repeatingLetters={gameSettings.repeatingLetters}
                 handleSetCurrentLetter={handleSetCurrentLetter}
               >
                 {roundNumber === gameSettings.numberOfRounds &&
@@ -175,36 +174,10 @@ const Game = () => {
               </LetterGenerator>
             </>
           ) : (
-            <div className="mb-auto mt-16">
-              <TextContainer>
-                <H2>{t("winner_title")}</H2>
-                {winningPlayers.length > 0 &&
-                  winningPlayers.map((player, index) =>
-                    index === 0 ? (
-                      <div className="w-full flex items-center gap-2">
-                        <TextLarge>
-                          {index + 1}. {player?.name}
-                        </TextLarge>
-                        <TextRegular>
-                          {player?.points} {t("points")}
-                        </TextRegular>
-                      </div>
-                    ) : (
-                      <div className="w-full flex items-center gap-2">
-                        <TextRegular>
-                          {index + 1}. {player?.name}
-                        </TextRegular>
-                        <TextSmall>
-                          {player?.points} {t("points")}
-                        </TextSmall>
-                      </div>
-                    )
-                  )}
-                <LinkButton href="/" onClick={resetGame}>
-                  {t("link_button")}
-                </LinkButton>
-              </TextContainer>
-            </div>
+            <GameFinished
+              winningPlayers={winningPlayers}
+              onLinkClick={resetGame}
+            />
           )}
         </>
       ) : (
