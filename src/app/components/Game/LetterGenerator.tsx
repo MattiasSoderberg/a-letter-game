@@ -1,29 +1,42 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
-import ButtonStandard from "../Button/variants/ButtonStandard";
+import React, { useEffect, useState } from "react";
 import TextContainer from "../containers/TextContainer";
 
 interface Props {
   children: React.ReactNode;
   alphabeth: string;
+  usedLetters: string[];
   currentLetter: string;
+  roundNumber: number;
   letterCountDown: number;
-  isRoundActive: boolean;
+  repeatingLetters: boolean;
   handleSetCurrentLetter: (letter: string) => void;
 }
 
 const LetterGenerator = ({
   children,
   alphabeth,
+  usedLetters,
   currentLetter,
+  roundNumber,
   letterCountDown,
+  repeatingLetters,
   handleSetCurrentLetter,
 }: Props) => {
-  const letters = alphabeth.split(",");
+  const [activeLetters, setActiveLetters] = useState(alphabeth.split(","));
 
   const generateNewLetter = () => {
-    handleSetCurrentLetter(letters[Math.floor(Math.random() * letters.length)]);
+    handleSetCurrentLetter(
+      activeLetters[Math.floor(Math.random() * activeLetters.length)]
+    );
   };
+
+  useEffect(() => {
+    if (!repeatingLetters) {
+      setActiveLetters([
+        ...activeLetters.filter((letter) => !usedLetters.includes(letter)),
+      ]);
+    }
+  }, [roundNumber]);
 
   useEffect(() => {
     if (letterCountDown === 0) {
