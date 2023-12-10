@@ -155,6 +155,7 @@ const Game = () => {
                 alphabeth={t("alphabeth")}
                 usedLetters={usedLetters}
                 currentLetter={currentLetter}
+                roundNumber={roundNumber}
                 letterCountDown={letterCountdown}
                 repeatingLetters={gameSettings.repeatingLetters}
                 handleSetCurrentLetter={handleSetCurrentLetter}
