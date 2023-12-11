@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { H2, TextRegular, TextSmall } from "../Typography";
+import React, { useState } from "react";
+import { H2, TextRegular } from "../Typography";
 import { useAppContext } from "@/context/AppContext";
 import ButtonNaked from "../Button/variants/ButtonNaked";
 import {
