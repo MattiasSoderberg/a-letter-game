@@ -56,7 +56,7 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
       },
     },
   };
-  const options = Array.from({ length: 8 }, (_, index) =>
+  const options = Array.from({ length: 9 }, (_, index) =>
     (index + 2).toString()
   );
 
