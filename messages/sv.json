@@ -43,6 +43,8 @@
     "points": "poäng",
     "link_button": "Tillbaka till start",
     "no_active_game": "Inget aktivt spel",
+    "player_drawer_button_next": "Nästa kategori",
+    "player_drawer_button_close": "Stäng",
     "new_game": {
       "title": "Nytt spel",
       "settings_form": {
