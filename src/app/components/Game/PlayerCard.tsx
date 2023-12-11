@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { TextSmall } from "../Typography";
+import { H2, TextRegular, TextSmall } from "../Typography";
 import { useAppContext } from "@/context/AppContext";
 import ButtonNaked from "../Button/variants/ButtonNaked";
 import {
@@ -8,6 +8,7 @@ import {
   MdExposurePlus1,
   MdExposurePlus2,
 } from "react-icons/md";
+import { useTranslations } from "next-intl";
 
 interface Props {
   name: string;
@@ -18,6 +19,7 @@ interface Props {
 const PlayerCard = ({ name, points, index }: Props) => {
   const [playerScore, setPlayerScore] = useState<number>(points);
   const { players, handleSetPlayers } = useAppContext();
+  const t = useTranslations("Game");
 
   const onClick = (point: number) => {
     const data = [...players];
@@ -28,9 +30,12 @@ const PlayerCard = ({ name, points, index }: Props) => {
 
   return (
     <div className="w-max h-max flex flex-col gap-2 p-4 bg-textContainerBG rounded-lg container-shadow shadow-lightDark">
+      <H2 size="xs" color="darkLight">
+        {t("player_card_title")} {index + 1}
+      </H2>
       <div className="w-full flex justify-between">
-        <TextSmall>{name}</TextSmall>
-        <TextSmall>{playerScore}</TextSmall>
+        <TextRegular>{name}</TextRegular>
+        <TextRegular>{playerScore}</TextRegular>
       </div>
       <div className="flex gap-2">
         <ButtonNaked
