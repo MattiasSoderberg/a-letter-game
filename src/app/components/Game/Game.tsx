@@ -95,7 +95,7 @@ const Game = () => {
       const timer = setTimeout(() => {
         openPlayerCardDrawer();
         clearTimeout(timer);
-      }, 2000);
+      }, 1000);
     }
   }, [isRoundActive]);
 
