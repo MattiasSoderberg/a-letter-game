@@ -89,11 +89,11 @@ const PlayerCardDrawer = ({ players, currentLetter, categories }: Props) => {
       initial={{ x: "-92%" }}
       animate={isPlayerCardsDrawerOpen ? { x: 0 } : { x: "-92%" }}
       transition={{ type: "spring", stiffness: 130, damping: 20 }}
-      className={`w-full h-full absolute top-0 -left-1 z-50`}
+      className={`w-full h-full absolute top-0 -left-1 z-50 overflow-hidden`}
     >
       <div className="w-full h-full flex items-start relative container-drop-shadow">
-        <div className="w-full h-full flex flex-col gap-10 p-5 bg-lightMain">
-          <div className="w-full flex flex-col gap-6">
+        <div className="w-full h-full flex flex-col gap-6 bg-lightMain">
+          <div className="w-full flex flex-col gap-6 p-5">
             <div className="w-full flex justify-between">
               <H1>{t("player_drawer_title")}</H1>
               {currentLetter !== "?" && (
@@ -121,7 +121,7 @@ const PlayerCardDrawer = ({ players, currentLetter, categories }: Props) => {
               </div>
             )}
           </div>
-          <div className="w-full h-fit flex flex-wrap justify-between gap-x-6 gap-y-10">
+          <div className="w-full h-fit flex flex-wrap justify-between gap-x-6 gap-y-10 px-5 pt-4 pb-[104px] overflow-y-auto">
             {players &&
               players.map((player, index) => (
                 <PlayerCard
