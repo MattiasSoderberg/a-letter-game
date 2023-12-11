@@ -135,7 +135,11 @@ const Game = () => {
     <div className="w-full h-full max-h-[650px] flex flex-col justify-between gap-4 px-4">
       {players.length > 0 ? (
         <>
-          <PlayerCardDrawer players={players} />
+          <PlayerCardDrawer
+            players={players}
+            currentLetter={currentLetter}
+            categories={gameSettings.categories}
+          />
           <HeaderDisplay
             categories={gameSettings.categories}
             numberOfRounds={gameSettings.numberOfRounds}
