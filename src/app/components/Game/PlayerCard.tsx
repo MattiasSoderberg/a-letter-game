@@ -22,13 +22,9 @@ const PlayerCard = ({ name, points, index }: Props) => {
   const onClick = (point: number) => {
     const data = [...players];
     data[index]["points"] += point;
-    handleSetPlayers(players);
+    handleSetPlayers(data);
     setPlayerScore((prevScore) => prevScore + point);
   };
-
-  useEffect(() => {
-    setPlayerScore(points);
-  }, [points]);
 
   return (
     <div className="w-max h-max flex flex-col gap-2 p-4 bg-textContainerBG rounded-lg container-shadow shadow-lightDark">
@@ -40,7 +36,7 @@ const PlayerCard = ({ name, points, index }: Props) => {
         <ButtonNaked
           onClick={() => onClick(-1)}
           borders
-          paddings="p-1"
+          paddings="p-[6px]"
           borderRadius="rounded-lg"
         >
           <MdExposureNeg1 />
@@ -48,7 +44,7 @@ const PlayerCard = ({ name, points, index }: Props) => {
         <ButtonNaked
           onClick={() => onClick(1)}
           borders
-          paddings="p-1"
+          paddings="p-[6px]"
           borderRadius="rounded-lg"
         >
           <MdExposurePlus1 />
@@ -56,7 +52,7 @@ const PlayerCard = ({ name, points, index }: Props) => {
         <ButtonNaked
           onClick={() => onClick(2)}
           borders
-          paddings="p-1"
+          paddings="p-[6px]"
           borderRadius="rounded-lg"
         >
           <MdExposurePlus2 />
