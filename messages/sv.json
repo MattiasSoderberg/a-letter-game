@@ -4,7 +4,8 @@
     "description": "En bokstavslek för hela familjen"
   },
   "Utils": {
-    "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö"
+    "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö",
+    "loading": "Laddar"
   },
   "Navigation": {
     "about": "Om",
@@ -50,7 +51,7 @@
     "new_game": {
       "title": "Nytt spel",
       "settings_form": {
-        "settings_title": "Spelinställningar",
+        "title": "Inställningar",
         "number_of_players_label": "Hur många spelare?",
         "repeating_letters_label": "Upprepande bokstäver?",
         "number_of_rounds_label": "Antal omgångar",
@@ -66,7 +67,7 @@
         }
       },
       "players_form": {
-        "input_title": "Namn",
+        "title": "Namn",
         "input_label": "Spelare",
         "submit_button_text": "Starta",
         "error_messages": {
