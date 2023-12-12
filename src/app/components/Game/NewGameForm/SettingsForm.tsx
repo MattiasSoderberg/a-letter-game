@@ -48,8 +48,8 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
     },
     categories: {
       rules: {
-        validate: (values: typeof gameSettings.categories) => {
-          if (values.every((value) => !value.value)) {
+        validate: (values: GameSettings["categories"]) => {
+          if (values.length > 0 && values.every((value) => !value.value)) {
             return t("error_messages.categories");
           }
         },
@@ -126,7 +126,7 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
         </LabelWrapper>
         <LabelWrapper
           label={t("categories_label")}
-          name="categories.0.value"
+          name="categories"
           horizontal
           errors={errors}
         >
