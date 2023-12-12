@@ -38,7 +38,7 @@ const config: Config = {
   safelist: [
     {
       pattern:
-        /(text|bg|shadow|outline)-(lightMain|lightDark|darkMain|darkLight|darkLighter|firstMain|firstLight|firstLighter|secondMain|secondLight|secondLighter|thirdMain|thirdLight|transparent|danger)/,
+        /(text|bg|shadow|outline|border)-(lightMain|lightDark|darkMain|darkLight|darkLighter|firstMain|firstLight|firstLighter|secondMain|secondLight|secondLighter|thirdMain|thirdLight|transparent|danger)/,
       variants: ["hover", "focus", "active"],
     },
   ],
