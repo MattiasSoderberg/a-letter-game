@@ -31,7 +31,6 @@ const GameTimer = ({
   };
 
   useEffect(() => {
-    console.log(isRoundActive);
     if (isRoundActive) {
       setBgColor("lightMain");
       setShadowColor("firstLight");
