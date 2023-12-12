@@ -9,6 +9,7 @@ interface Props {
   roundNumber: number;
   letterCountDown: number;
   repeatingLetters: boolean;
+  isRoundActive: boolean;
   handleSetCurrentLetter: (letter: string) => void;
 }
 
@@ -20,9 +21,11 @@ const LetterGenerator = ({
   roundNumber,
   letterCountDown,
   repeatingLetters,
+  isRoundActive,
   handleSetCurrentLetter,
 }: Props) => {
   const [activeLetters, setActiveLetters] = useState(alphabeth.split(","));
+  const [borderColor, setBorderColor] = useState("firstLight");
 
   const generateNewLetter = () => {
     handleSetCurrentLetter(
@@ -41,14 +44,30 @@ const LetterGenerator = ({
   useEffect(() => {
     if (letterCountDown === 0) {
       generateNewLetter();
+    } else if (letterCountDown === 3) {
+      setBorderColor("thirdMain");
     }
   }, [letterCountDown]);
+
+  useEffect(() => {
+    if (isRoundActive) {
+      setBorderColor("firstLight");
+    } else if (!isRoundActive) {
+      setBorderColor("danger");
+    }
+  }, [isRoundActive]);
+
+  useEffect(() => {
+    setBorderColor("firstLight");
+  }, []);
 
   return (
     <TextContainer>
       <div className="w-full flex justify-center py-4">
         <div className="w-[200px] h-full flex flex-col gap-10">
-          <div className="w-full h-[200px] flex justify-center items-center p-4 bg-textContainerBG rounded-lg border-4 border-firstLight">
+          <div
+            className={`w-full h-[200px] flex justify-center items-center p-4 rounded-lg border-4 border-${borderColor}`}
+          >
             <p className="text-9xl text-darkMain">
               {currentLetter === "?"
                 ? currentLetter

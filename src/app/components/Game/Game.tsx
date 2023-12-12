@@ -22,21 +22,22 @@ const Game = () => {
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [letterCountdown, setLetterCountDown] = useState(3);
   const [gameTimeLeft, setGameTimeLeft] = useState(gameSettings.lengthOfRounds);
+  const [timeIsRunningOut, setTimeIsRunningOut] = useState(false);
   const [winningPlayers, setWinningPlayers] = useState<Player[]>([]);
   const letterCountdownRef = useRef<ReturnType<typeof setInterval>>();
   const gameTimerRef = useRef<ReturnType<typeof setInterval>>();
   const router = useRouter();
   const t = useTranslations("Game");
+  const littleTimeLeftLimit =
+    gameSettings.lengthOfRounds > 30
+      ? Math.ceil(gameSettings.lengthOfRounds * 0.2)
+      : 5;
 
   const handleSetCurrentLetter = (letter: string) => {
     setCurrentLetter(letter);
     if (letter && letter !== "?") {
       setIsRoundActive(true);
     }
-  };
-
-  const handleSetRoundIsActive = (active: boolean) => {
-    setIsRoundActive(active);
   };
 
   const incrementRoundNumber = () => {
@@ -53,6 +54,7 @@ const Game = () => {
     }
 
     setLetterCountDown(3);
+    setGameTimeLeft(gameSettings.lengthOfRounds);
 
     letterCountdownRef.current = setInterval(() => {
       setLetterCountDown((prev) => prev - 1);
@@ -77,6 +79,7 @@ const Game = () => {
   useEffect(() => {
     if (isRoundActive && currentLetter !== "?") {
       setGameTimeLeft(gameSettings.lengthOfRounds);
+      setTimeIsRunningOut(false);
       gameTimerRef.current = setInterval(() => {
         setGameTimeLeft((prev) => {
           if (prev === 1) {
@@ -95,9 +98,15 @@ const Game = () => {
       const timer = setTimeout(() => {
         openPlayerCardDrawer();
         clearTimeout(timer);
-      }, 1000);
+      }, 2000);
     }
   }, [isRoundActive]);
+
+  useEffect(() => {
+    if (gameTimeLeft < littleTimeLeftLimit) {
+      setTimeIsRunningOut(true);
+    }
+  }, [gameTimeLeft]);
 
   useEffect(() => {
     if (letterCountdownRef.current && letterCountdown === 0) {
@@ -154,6 +163,8 @@ const Game = () => {
               <GameTimer
                 gameTimeLeft={gameTimeLeft}
                 lengthOfRounds={gameSettings.lengthOfRounds}
+                timeIsRunningOut={timeIsRunningOut}
+                isRoundActive={isRoundActive}
               />
               <LetterGenerator
                 alphabeth={t("alphabeth")}
@@ -162,6 +173,7 @@ const Game = () => {
                 roundNumber={roundNumber}
                 letterCountDown={letterCountdown}
                 repeatingLetters={gameSettings.repeatingLetters}
+                isRoundActive={isRoundActive}
                 handleSetCurrentLetter={handleSetCurrentLetter}
               >
                 {roundNumber === gameSettings.numberOfRounds &&
