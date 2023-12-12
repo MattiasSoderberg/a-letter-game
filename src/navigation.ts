@@ -29,6 +29,14 @@ export const pathnames = {
     sv: "/spel/nytt-spel",
     en: "/game/new-game",
   },
+  "/game/new-game/settings": {
+    sv: "/spel/nytt-spel/installningar",
+    en: "/game/new-game/settings",
+  },
+  "/game/new-game/player-names": {
+    sv: "/spel/nytt-spel/spelarnamn",
+    en: "/game/new-game/player-names",
+  },
 } satisfies Pathnames<typeof locales>;
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =
