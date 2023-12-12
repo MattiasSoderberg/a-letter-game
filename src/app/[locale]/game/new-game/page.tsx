@@ -13,13 +13,13 @@ export default function NewGame() {
   const messages = useMessages();
 
   return (
-    <MainContainer>
-      <TextContainer shadowColor="secondLighter">
-        <H1>{t("title")}</H1>
-      </TextContainer>
-      <NextIntlClientProvider messages={messages}>
-        <NewGameForm />
-      </NextIntlClientProvider>
-    </MainContainer>
+    // <MainContainer>
+    //   <TextContainer shadowColor="secondLighter">
+    //     <H1>{t("title")}</H1>
+    //   </TextContainer>
+    //   <NextIntlClientProvider messages={messages}>
+    //   </NextIntlClientProvider>
+    // </MainContainer>
+    <NewGameForm />
   );
 }

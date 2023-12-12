@@ -1,7 +1,8 @@
+"use client";
 import React from "react";
 import { H2 } from "../../Typography";
 import ButtonStandard from "../../Button/variants/ButtonStandard";
-import { Player } from "@/context/AppContext";
+import { Player, useAppContext } from "@/context/AppContext";
 import { useTranslations } from "next-intl";
 import {
   FieldValues,
@@ -12,17 +13,15 @@ import {
 import TextContainer from "../../containers/TextContainer";
 import LabelWrapper from "../../Form/LabelWrapper";
 import Input from "../../Form/Input";
-
-interface Props {
-  numberOfPlayers: number;
-  onPlayersFormSubmit: (players: Player[]) => void;
-}
+import { useRouter } from "@/navigation";
 
 export type PlayersFormValues = {
   players: Player[];
 };
 
-const PlayersForm = ({ numberOfPlayers, onPlayersFormSubmit }: Props) => {
+const PlayersForm = () => {
+  const { gameSettings, handleSetPlayers } = useAppContext();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -30,10 +29,12 @@ const PlayersForm = ({ numberOfPlayers, onPlayersFormSubmit }: Props) => {
     formState: { errors },
   } = useForm<PlayersFormValues>({
     defaultValues: {
-      players: Array.from(Array(numberOfPlayers) as Player[]).fill({
-        name: "",
-        points: 0,
-      }),
+      players: Array.from(Array(gameSettings.numberOfPlayers) as Player[]).fill(
+        {
+          name: "",
+          points: 0,
+        }
+      ),
     },
     mode: "onBlur",
   });
@@ -45,17 +46,19 @@ const PlayersForm = ({ numberOfPlayers, onPlayersFormSubmit }: Props) => {
     control,
     name: "players",
   });
+
   const onSubmit: SubmitHandler<PlayersFormValues> = (data) => {
     const players = data.players.map((player) => ({
       ...player,
       name: player.name.at(0)?.toUpperCase() + player.name.slice(1),
     }));
-    onPlayersFormSubmit(players);
+    handleSetPlayers(players);
+    router.push("/game");
   };
 
   return (
     <TextContainer shadowColor="secondLighter">
-      <H2>{`${t("input_title")}`}</H2>
+      <H2>{t("title")}</H2>
       <form
         className="w-full h-full flex flex-col gap-6"
         onSubmit={handleSubmit(onSubmit)}

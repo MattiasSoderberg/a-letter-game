@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import TextContainer from "../../containers/TextContainer";
@@ -10,13 +11,12 @@ import Checkbox from "../../Form/Checkbox";
 import Select from "../../Form/Select";
 import { H2 } from "../../Typography";
 import { GameSettings } from "@/gameConfig";
+import { useAppContext } from "@/context/AppContext";
+import { useRouter } from "@/navigation";
 
-interface Props {
-  gameSettings: GameSettings;
-  onSettingsFormSubmit: (settings: GameSettings) => void;
-}
-
-const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
+const SettingsForm = () => {
+  const { gameSettings, handleSetGameSettings } = useAppContext();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -61,7 +61,7 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
   );
 
   const onSubmit: SubmitHandler<GameSettings> = (data) => {
-    const payload = {
+    const settings = {
       ...data,
       numberOfPlayers:
         typeof data.numberOfPlayers === "string"
@@ -69,12 +69,13 @@ const SettingsForm = ({ gameSettings, onSettingsFormSubmit }: Props) => {
           : data.numberOfPlayers,
       categories: data.categories.filter((category) => category.value !== ""),
     };
-    onSettingsFormSubmit(payload);
+    handleSetGameSettings(settings);
+    router.push("/game/new-game/player-names");
   };
 
   return (
     <TextContainer shadowColor="secondLighter">
-      <H2>{t("settings_title")}</H2>
+      <H2>{t("title")}</H2>
       <form
         className="w-full h-full flex flex-col gap-10"
         onSubmit={handleSubmit(onSubmit)}

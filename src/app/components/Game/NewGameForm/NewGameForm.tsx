@@ -1,41 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PlayersForm from "./PlayersForm";
 import { Player, useAppContext } from "@/context/AppContext";
 import { useRouter } from "@/navigation";
 import SettingsForm from "./SettingsForm";
 import { GameSettings } from "@/gameConfig";
+import TextContainer from "../../containers/TextContainer";
+import { useTranslations } from "next-intl";
+import { TextRegular } from "../../Typography";
 
 const NewGameForm = () => {
-  const [isSettingsSubmitted, setIsSettingsSubmitted] = useState(false);
-  const { handleSetPlayers, gameSettings, handleSetGameSettings } =
-    useAppContext();
   const router = useRouter();
+  const t = useTranslations("Utils");
 
-  const onSettingsFormSubmit = (settings: GameSettings) => {
-    handleSetGameSettings(settings);
-    setIsSettingsSubmitted(true);
-  };
-
-  const onPlayersFormSubmit = (players: Player[]) => {
-    handleSetPlayers(players);
-    router.push("/game");
-  };
+  useEffect(() => {
+    router.push("/game/new-game/settings");
+  }, []);
 
   return (
-    <>
-      {isSettingsSubmitted ? (
-        <PlayersForm
-          numberOfPlayers={gameSettings.numberOfPlayers}
-          onPlayersFormSubmit={onPlayersFormSubmit}
-        />
-      ) : (
-        <SettingsForm
-          gameSettings={gameSettings}
-          onSettingsFormSubmit={onSettingsFormSubmit}
-        />
-      )}
-    </>
+    <TextContainer>
+      <TextRegular>{t("loading")}...</TextRegular>
+    </TextContainer>
   );
 };
 
