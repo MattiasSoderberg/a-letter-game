@@ -1,12 +1,12 @@
-import { Player } from "@/context/AppContext";
 import React from "react";
 import TextContainer from "../containers/TextContainer";
 import { H2, TextLarge, TextRegular, TextSmall } from "../Typography";
 import LinkButton from "../Link/LinkButton";
 import { useTranslations } from "next-intl";
+import { WinningPlayer } from "./Game";
 
 interface Props {
-  winningPlayers: Player[];
+  winningPlayers: WinningPlayer[];
   onLinkClick: () => void;
 }
 
@@ -19,13 +19,13 @@ const GameFinished = ({ winningPlayers, onLinkClick }: Props) => {
         <H2>{t("winner_title")}</H2>
         {winningPlayers.length > 0 &&
           winningPlayers.map((player, index) =>
-            index === 0 ? (
+            player?.place === 1 ? (
               <div
                 className="w-full flex items-center gap-2"
                 key={`winners-${index}`}
               >
                 <TextLarge>
-                  {index + 1}. {player?.name}
+                  {player?.place}. {player?.name}
                 </TextLarge>
                 <TextRegular>
                   {player?.points} {t("points")}
@@ -37,7 +37,7 @@ const GameFinished = ({ winningPlayers, onLinkClick }: Props) => {
                 key={`winners-${index}`}
               >
                 <TextRegular>
-                  {index + 1}. {player?.name}
+                  {player?.place}. {player?.name}
                 </TextRegular>
                 <TextSmall>
                   {player?.points} {t("points")}

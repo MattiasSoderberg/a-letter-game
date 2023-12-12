@@ -12,6 +12,8 @@ import usePlayerCardsDrawer from "@/hooks/usePlayerCardsDrawer";
 import ButtonStandard from "../Button/variants/ButtonStandard";
 import GameFinished from "./GameFinished";
 
+export type WinningPlayer = Player & { place: number };
+
 const Game = () => {
   const { players, gameSettings, resetPlayerScore } = useAppContext();
   const { openPlayerCardDrawer } = usePlayerCardsDrawer();
@@ -23,7 +25,7 @@ const Game = () => {
   const [letterCountdown, setLetterCountDown] = useState(3);
   const [gameTimeLeft, setGameTimeLeft] = useState(gameSettings.lengthOfRounds);
   const [timeIsRunningOut, setTimeIsRunningOut] = useState(false);
-  const [winningPlayers, setWinningPlayers] = useState<Player[]>([]);
+  const [winningPlayers, setWinningPlayers] = useState<WinningPlayer[]>([]);
   const letterCountdownRef = useRef<ReturnType<typeof setInterval>>();
   const gameTimerRef = useRef<ReturnType<typeof setInterval>>();
   const router = useRouter();
@@ -117,15 +119,36 @@ const Game = () => {
 
   useEffect(() => {
     if (isGameFinished) {
+      // const sortedPlayers = players
+      //   .map((player) => player)
+      //   .sort((a, b) => b.points - a.points);
+      // setWinningPlayers([
+      //   ...sortedPlayers.slice(
+      //     0,
+      //     gameSettings.numberOfPlayers > 2 ? 3 : gameSettings.numberOfPlayers
+      //   ),
+      // ]);
       const sortedPlayers = players
-        .map((player) => player)
-        .sort((a, b) => b.points - a.points);
-      setWinningPlayers([
-        ...sortedPlayers.slice(
-          0,
-          gameSettings.numberOfPlayers > 2 ? 3 : gameSettings.numberOfPlayers
-        ),
-      ]);
+        .map((player, index) => ({ ...player, place: index + 1 }))
+        .sort((a, b) => b.points - a.points)
+        .slice(0, players.length >= 3 ? 3 : 2)
+        .reduce(
+          (
+            acc: WinningPlayer[],
+            player: WinningPlayer,
+            index: number,
+            players: WinningPlayer[]
+          ) => {
+            if (index > 0 && players[index - 1].points === player.points) {
+              player.place = players[index - 1].place;
+            }
+            acc.push(player);
+            return acc;
+          },
+          []
+        );
+
+      setWinningPlayers(sortedPlayers);
     }
   }, [isGameFinished]);
 
