@@ -119,15 +119,6 @@ const Game = () => {
 
   useEffect(() => {
     if (isGameFinished) {
-      // const sortedPlayers = players
-      //   .map((player) => player)
-      //   .sort((a, b) => b.points - a.points);
-      // setWinningPlayers([
-      //   ...sortedPlayers.slice(
-      //     0,
-      //     gameSettings.numberOfPlayers > 2 ? 3 : gameSettings.numberOfPlayers
-      //   ),
-      // ]);
       const sortedPlayers = players
         .map((player, index) => ({ ...player, place: index + 1 }))
         .sort((a, b) => b.points - a.points)
