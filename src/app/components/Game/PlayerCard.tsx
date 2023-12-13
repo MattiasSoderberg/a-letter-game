@@ -19,7 +19,7 @@ interface Props {
 const PlayerCard = ({ name, points, index }: Props) => {
   const [playerScore, setPlayerScore] = useState<number>(points);
   const { players, handleSetPlayers } = useAppContext();
-  const t = useTranslations("Game");
+  const t = useTranslations("Game.drawer");
 
   const onClick = (point: number) => {
     const data = [...players];

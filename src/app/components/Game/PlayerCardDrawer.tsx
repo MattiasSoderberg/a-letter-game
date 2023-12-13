@@ -27,7 +27,7 @@ const PlayerCardDrawer = ({ players, currentLetter, categories }: Props) => {
   const { openPlayerCardDrawer, closePlayerCardDrawer } =
     usePlayerCardsDrawer();
   const { isPlayerCardsDrawerOpen } = useAppContext();
-  const t = useTranslations("Game");
+  const t = useTranslations("Game.drawer");
 
   const onClick = () => {
     if (currentCategoryIndex >= categories.length - 1) {
