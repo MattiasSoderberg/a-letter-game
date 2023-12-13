@@ -61,7 +61,7 @@
       "settings_form": {
         "title": "Inställningar",
         "number_of_players_label": "Hur många spelare?",
-        "repeating_letters_label": "Upprepande bokstäver?",
+        "repeating_letters_label": "Återkommande bokstäver?",
         "remove_hard_letters_label": "Ta bort svåra bokstäver?",
         "remove_local_letters_label": "Ta bort Å, Ä, Ö?",
         "number_of_rounds_label": "Antal omgångar",
