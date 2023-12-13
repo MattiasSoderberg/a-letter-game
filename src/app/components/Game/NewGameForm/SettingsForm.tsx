@@ -95,9 +95,14 @@ const SettingsForm = () => {
         <LabelWrapper
           label={t("repeating_letters_label")}
           name="repeatingLetters"
-          errors={errors}
         >
           <Checkbox name="repeatingLetters" register={register} />
+        </LabelWrapper>
+        <LabelWrapper
+          label={t("include_hard_letters_label")}
+          name="removeHardLetters"
+        >
+          <Checkbox name="removeHardLetters" register={register} />
         </LabelWrapper>
         <LabelWrapper
           label={t("number_of_rounds_label")}
