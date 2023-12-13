@@ -13,10 +13,12 @@ import { H2 } from "../../Typography";
 import { GameSettings } from "@/gameConfig";
 import { useAppContext } from "@/context/AppContext";
 import { useRouter } from "@/navigation";
+import { useLocale } from "next-intl";
 
 const SettingsForm = () => {
   const { gameSettings, handleSetGameSettings } = useAppContext();
   const router = useRouter();
+  const locale = useLocale();
   const {
     register,
     handleSubmit,
@@ -99,11 +101,19 @@ const SettingsForm = () => {
           <Checkbox name="repeatingLetters" register={register} />
         </LabelWrapper>
         <LabelWrapper
-          label={t("include_hard_letters_label")}
+          label={t("remove_hard_letters_label")}
           name="removeHardLetters"
         >
           <Checkbox name="removeHardLetters" register={register} />
         </LabelWrapper>
+        {locale === "sv" && (
+          <LabelWrapper
+            label={t("remove_local_letters_label")}
+            name="removeLocalLetters"
+          >
+            <Checkbox name="removeLocalLetters" register={register} />
+          </LabelWrapper>
+        )}
         <LabelWrapper
           label={t("number_of_rounds_label")}
           name="numberOfRounds"
