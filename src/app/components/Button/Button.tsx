@@ -11,6 +11,7 @@ interface Props {
   classNames?: string;
   hovers?: string;
   transition?: string;
+  disabled?: boolean;
   size?: "lg" | "sm" | "xs";
   type?: "button" | "submit";
   onClick?: () => void;
@@ -26,6 +27,7 @@ const Button = ({
   classNames,
   hovers,
   transition = "transition-all duration-150 ease-in",
+  disabled = false,
   size = "lg",
   type = "button",
   onClick,
@@ -38,8 +40,14 @@ const Button = ({
     size === "lg" ? paddings : size === "sm" ? "px-7 py-3" : "px-2 py-1"
   } ${borderRadius} ${borders} ${classNames}`;
   const activeClasses = `${baseClasses} bg-${background} text-${color} ${hoverClasses} ${transition} focus:bg-${background}`;
+  const disabledClasses = `${baseClasses} bg-lightDark text-darkLight focus:bg-lightDark`;
   return (
-    <button type={type} className={activeClasses} onClick={onClick}>
+    <button
+      disabled={disabled}
+      type={type}
+      className={disabled ? disabledClasses : activeClasses}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
