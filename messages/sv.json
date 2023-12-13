@@ -54,6 +54,7 @@
         "title": "Inställningar",
         "number_of_players_label": "Hur många spelare?",
         "repeating_letters_label": "Upprepande bokstäver?",
+        "include_hard_letters_label": "Ta bort svåra bokstäver (Q, X, Z)?",
         "number_of_rounds_label": "Antal omgångar",
         "length_of_rounds_label": "Omgångarnas längd",
         "categories_label": "Kategorier",
