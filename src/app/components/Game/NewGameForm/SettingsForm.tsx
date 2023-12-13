@@ -85,7 +85,6 @@ const SettingsForm = () => {
         <LabelWrapper
           label={t("number_of_players_label")}
           name="numberOfPlayers"
-          errors={errors}
         >
           <Select
             options={options}
@@ -117,7 +116,7 @@ const SettingsForm = () => {
         <LabelWrapper
           label={t("number_of_rounds_label")}
           name="numberOfRounds"
-          errors={errors}
+          error={errors["numberOfRounds"]?.message}
         >
           <Input<GameSettings>
             name="numberOfRounds"
@@ -130,7 +129,7 @@ const SettingsForm = () => {
         <LabelWrapper
           label={t("length_of_rounds_label")}
           name="lengthOfRounds"
-          errors={errors}
+          error={errors["lengthOfRounds"]?.message}
         >
           <Input<GameSettings>
             name="lengthOfRounds"
@@ -142,9 +141,13 @@ const SettingsForm = () => {
         </LabelWrapper>
         <LabelWrapper
           label={t("categories_label")}
-          name="categories"
+          name="categories.0.value"
           horizontal
-          errors={errors}
+          error={
+            errors["categories"]?.[0]?.message
+              ? errors["categories"]?.[0]?.message
+              : ""
+          }
         >
           <DynamicInput
             name="categories"
