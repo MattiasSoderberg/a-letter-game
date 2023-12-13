@@ -29,10 +29,15 @@
     }
   },
   "About": {
-    "title": "Om En bokstavslek"
+    "title": "Om En bokstavslek",
+    "content": "Idén att göra den här appen kom efter att jag lekt den här leken med barnen många gånger. Då har alltid någon läst alfabetet tyst i huvudet tills någon annan säger stopp och berättar vilken bokstav den kommit till. Jag tänkte att det vore mycket enklare om vi hade en app som kan generera en bokstav och som håller poängställningen. Den här appen blev resultatet.",
+    "ending": "Jag hoppas ni som använder den kommer ha lika mycket nytta av den som jag har!"
   },
   "Rules": {
-    "title": "Regler"
+    "title": "Regler",
+    "introduction": "Spelet är enkelt. Det appen gör är att generera en bokstav åt gången, ta tiden och föra poäng. Det roliga med den här leken är att den är anpassningsbar efter vad man som spelare känner för. Det hela går ut på att komma på en sak per kategori som börjar på den bokstav som visas.",
+    "content": "Spelet börjar med att göra några val och välja vilka kategorier som ska användas. Väl inne i spelet trycker man på knappen för att få fram en bokstav. Det är en nedräkning innan bokstaven visas och klockan startar så att alla spelare kan göra sig beredda. När tiden gått ut öppnas poängtavlan och första kategorin visas. Alla spelare får uppge vad de har för svar. Är en spelare ensam om sitt svar ger det 2 poäng och är det flera som har samma svar får samtliga dessa spelare 1 poäng var. När alla spelare fått uppge sina svar på en kategori trycker man på knappen för att visa nästa kategori och upprepa tills alla kategorier gåtts igenom. Då stänger man poängtavlan med samma knapp eller lilla pilen upp till höger om poängtavlan. När alla omgångar är avklarade trycker man på avsluta för att se de tre bästa spelarna. Sen är det bara att gå tillbaka till startsidan för att starta ett nytt spel.",
+    "ending": "Det fungerar som bäst om alla spelare har något att skriva sina svar på. Det förhindrar att spelare \"snor\" svar från varandra och gör det lite lättare att komma ihåg vad man kommit fram till men det går bra att hålla sina svar i huvudet också."
   },
   "Game": {
     "generate_letter_button_text": "Nästa bokstav",

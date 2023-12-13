@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { H1 } from "../../components/Typography";
+import { H1, TextRegular } from "../../components/Typography";
 import MainContainer from "../../components/containers/MainContainer";
 import TextContainer from "../../components/containers/TextContainer";
 
@@ -13,6 +13,8 @@ export default function About({
     <MainContainer>
       <TextContainer>
         <H1>{t("title")}</H1>
+        <TextRegular>{t("content")}</TextRegular>
+        <TextRegular>{t("ending")}</TextRegular>
       </TextContainer>
     </MainContainer>
   );
