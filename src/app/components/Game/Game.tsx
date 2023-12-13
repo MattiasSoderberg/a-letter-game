@@ -195,14 +195,24 @@ const Game = () => {
                 handleSetCurrentLetter={handleSetCurrentLetter}
               >
                 {roundNumber === gameSettings.numberOfRounds &&
-                !isRoundActive ? (
+                !isRoundActive &&
+                letterCountdown === 0 ? (
                   <ButtonStandard onClick={onClickFinishGame} size="sm">
                     {t("finnish_game")}
                   </ButtonStandard>
                 ) : (
-                  <ButtonStandard onClick={onClickNewLetter} size="sm">
+                  <ButtonStandard
+                    onClick={onClickNewLetter}
+                    size="sm"
+                    disabled={
+                      currentLetter !== "?" &&
+                      (isRoundActive || letterCountdown !== 0)
+                    }
+                  >
                     {currentLetter === "?"
                       ? t("initial_generate_letter_button_text")
+                      : isRoundActive || letterCountdown !== 0
+                      ? t("generate_letter_button_alt_text")
                       : t("generate_letter_button_text")}
                   </ButtonStandard>
                 )}
