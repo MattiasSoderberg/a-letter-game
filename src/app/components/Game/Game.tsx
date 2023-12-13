@@ -26,6 +26,7 @@ const Game = () => {
   const [gameTimeLeft, setGameTimeLeft] = useState(gameSettings.lengthOfRounds);
   const [timeIsRunningOut, setTimeIsRunningOut] = useState(false);
   const [winningPlayers, setWinningPlayers] = useState<WinningPlayer[]>([]);
+  const [isButtonActive, setIsButtonActive] = useState(true);
   const letterCountdownRef = useRef<ReturnType<typeof setInterval>>();
   const gameTimerRef = useRef<ReturnType<typeof setInterval>>();
   const router = useRouter();
@@ -33,7 +34,7 @@ const Game = () => {
   const littleTimeLeftLimit =
     gameSettings.lengthOfRounds > 30
       ? Math.ceil(gameSettings.lengthOfRounds * 0.2)
-      : 5;
+      : 6;
 
   const handleSetCurrentLetter = (letter: string) => {
     setCurrentLetter(letter);
@@ -48,6 +49,7 @@ const Game = () => {
 
   const onClickNewLetter = () => {
     setCurrentLetter("");
+    setIsButtonActive(false);
     if (letterCountdownRef.current) {
       clearInterval(letterCountdownRef.current);
     }
@@ -99,8 +101,9 @@ const Game = () => {
 
       const timer = setTimeout(() => {
         openPlayerCardDrawer();
+        setIsButtonActive(true);
         clearTimeout(timer);
-      }, 2000);
+      }, 1000);
     }
   }, [isRoundActive]);
 
@@ -130,8 +133,11 @@ const Game = () => {
             index: number,
             players: WinningPlayer[]
           ) => {
+            console.log(index, player);
             if (index > 0 && players[index - 1].points === player.points) {
               player.place = players[index - 1].place;
+            } else {
+              player.place = index + 1;
             }
             acc.push(player);
             return acc;
@@ -197,21 +203,24 @@ const Game = () => {
                 {roundNumber === gameSettings.numberOfRounds &&
                 !isRoundActive &&
                 letterCountdown === 0 ? (
-                  <ButtonStandard onClick={onClickFinishGame} size="sm">
+                  <ButtonStandard
+                    onClick={onClickFinishGame}
+                    size="sm"
+                    hovers=""
+                    disabled={!isButtonActive}
+                  >
                     {t("finnish_game")}
                   </ButtonStandard>
                 ) : (
                   <ButtonStandard
                     onClick={onClickNewLetter}
                     size="sm"
-                    disabled={
-                      currentLetter !== "?" &&
-                      (isRoundActive || letterCountdown !== 0)
-                    }
+                    hovers=""
+                    disabled={!isButtonActive}
                   >
                     {currentLetter === "?"
                       ? t("initial_generate_letter_button_text")
-                      : isRoundActive || letterCountdown !== 0
+                      : !isButtonActive
                       ? t("generate_letter_button_alt_text")
                       : t("generate_letter_button_text")}
                   </ButtonStandard>
