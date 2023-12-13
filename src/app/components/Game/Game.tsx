@@ -188,6 +188,7 @@ const Game = () => {
                 letterCountDown={letterCountdown}
                 repeatingLetters={gameSettings.repeatingLetters}
                 isRoundActive={isRoundActive}
+                removeHardLetters={gameSettings.removeHardLetters}
                 handleSetCurrentLetter={handleSetCurrentLetter}
               >
                 {roundNumber === gameSettings.numberOfRounds &&

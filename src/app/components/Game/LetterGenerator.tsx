@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TextContainer from "../containers/TextContainer";
+import { hardLetters } from "@/gameConfig";
 
 interface Props {
   children: React.ReactNode;
@@ -10,6 +11,7 @@ interface Props {
   letterCountDown: number;
   repeatingLetters: boolean;
   isRoundActive: boolean;
+  removeHardLetters: boolean;
   handleSetCurrentLetter: (letter: string) => void;
 }
 
@@ -22,9 +24,10 @@ const LetterGenerator = ({
   letterCountDown,
   repeatingLetters,
   isRoundActive,
+  removeHardLetters,
   handleSetCurrentLetter,
 }: Props) => {
-  const [activeLetters, setActiveLetters] = useState(alphabeth.split(","));
+  const [activeLetters, setActiveLetters] = useState<string[]>([]);
   const [borderColor, setBorderColor] = useState("firstLight");
 
   const generateNewLetter = () => {
@@ -58,6 +61,15 @@ const LetterGenerator = ({
   }, [isRoundActive]);
 
   useEffect(() => {
+    const lettersArray = alphabeth.split(",");
+    if (removeHardLetters) {
+      setActiveLetters([
+        ...lettersArray.filter((letter) => !hardLetters.includes(letter)),
+      ]);
+    } else {
+      setActiveLetters(lettersArray);
+    }
+
     setBorderColor("firstLight");
   }, []);
 
