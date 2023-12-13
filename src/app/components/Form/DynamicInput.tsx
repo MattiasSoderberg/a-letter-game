@@ -49,7 +49,7 @@ const DynamicInput = ({
               borderRadius="rounded-lg"
               background="lightMain"
               paddings="py-1 px-2"
-              onClick={() => remove(index)}
+              onClick={() => fields.length > 1 && remove(index)}
             >
               <MdOutlineRemove />
             </ButtonNaked>
@@ -61,7 +61,7 @@ const DynamicInput = ({
         borders
         borderRadius="rounded-lg"
         background="lightMain"
-        onClick={() => append({ value: "" }, { focusIndex: fields.length })}
+        onClick={() => append({ value: "" }, { focusIndex: fields.length - 1 })}
       >
         {buttonText}
       </ButtonNaked>
