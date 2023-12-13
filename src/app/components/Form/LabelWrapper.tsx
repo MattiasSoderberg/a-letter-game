@@ -1,12 +1,11 @@
 import React from "react";
 import { TextLarge, TextSmall } from "../Typography";
-import { FieldErrors, FieldValues } from "react-hook-form";
 
 interface Props {
   children: React.ReactNode;
   label: string;
   name: string;
-  errors?: FieldErrors<FieldValues>;
+  error?: string;
   horizontal?: boolean;
 }
 
@@ -14,15 +13,9 @@ const LabelWrapper = ({
   children,
   label,
   name,
-  errors,
+  error,
   horizontal = false,
 }: Props) => {
-  const error =
-    (errors?.[name]?.message as string) ||
-    (errors?.[name]?.root?.message as string) ||
-    (errors?.message as unknown as string) ||
-    undefined;
-
   return (
     <div
       className={`w-full flex ${

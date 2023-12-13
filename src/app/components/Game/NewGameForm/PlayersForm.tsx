@@ -68,9 +68,7 @@ const PlayersForm = () => {
             key={field.id}
             name={`players.${index}.name`}
             label={`${t("input_label")} ${index + 1}`}
-            errors={
-              (errors?.players?.[index]?.name as FieldValues) || undefined
-            }
+            error={errors?.players?.[index]?.name?.message}
             horizontal
           >
             <Input<PlayersFormValues>
