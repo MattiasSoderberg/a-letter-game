@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TextContainer from "../containers/TextContainer";
 import { hardLetters } from "@/gameConfig";
+import { useLocale } from "next-intl";
 
 interface Props {
   children: React.ReactNode;
@@ -29,6 +30,7 @@ const LetterGenerator = ({
 }: Props) => {
   const [activeLetters, setActiveLetters] = useState<string[]>([]);
   const [borderColor, setBorderColor] = useState("firstLight");
+  const locale = useLocale();
 
   const generateNewLetter = () => {
     handleSetCurrentLetter(
@@ -64,7 +66,9 @@ const LetterGenerator = ({
     const lettersArray = alphabeth.split(",");
     if (removeHardLetters) {
       setActiveLetters([
-        ...lettersArray.filter((letter) => !hardLetters.includes(letter)),
+        ...lettersArray.filter(
+          (letter) => !hardLetters[locale].includes(letter)
+        ),
       ]);
     } else {
       setActiveLetters(lettersArray);
