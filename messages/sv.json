@@ -42,6 +42,7 @@
   "Game": {
     "generate_letter_button_text": "Nästa bokstav",
     "initial_generate_letter_button_text": "Första bokstaven",
+    "generate_letter_button_alt_text": "Omgång igång",
     "finnish_game": "Avsluta spelet",
     "categories_title": "Kategorier",
     "rounds_title": "Omgång",

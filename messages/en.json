@@ -42,6 +42,7 @@
   "Game": {
     "generate_letter_button_text": "Next Letter",
     "initial_generate_letter_button_text": "First Letter",
+    "generate_letter_button_alt_text": "Round running",
     "finish_game": "End the Game",
     "categories_title": "Categories",
     "rounds_title": "Round",
