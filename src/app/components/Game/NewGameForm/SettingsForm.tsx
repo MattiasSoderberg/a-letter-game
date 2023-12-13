@@ -143,11 +143,7 @@ const SettingsForm = () => {
           label={t("categories_label")}
           name="categories.0.value"
           horizontal
-          error={
-            errors["categories"]?.[0]?.message
-              ? errors["categories"]?.[0]?.message
-              : ""
-          }
+          error={errors["categories"]?.root?.message}
         >
           <DynamicInput
             name="categories"
