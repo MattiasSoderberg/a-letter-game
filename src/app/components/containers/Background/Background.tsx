@@ -8,7 +8,7 @@ interface Props {
 
 const Background = () => {
   const t = useTranslations("Utils");
-  const letters = t("alphabeth").split(",");
+  const letters = t("alphabet").split(",");
   const positions = [
     { top: "top-[7%]", left: "left-[2%]", color: "secondMain" },
     { top: "top-[10%]", left: "left-[75%]" },

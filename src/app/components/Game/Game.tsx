@@ -181,7 +181,7 @@ const Game = () => {
                 isRoundActive={isRoundActive}
               />
               <LetterGenerator
-                alphabeth={t("alphabeth")}
+                alphabeth={t("alphabet")}
                 hardLetters={t("hard_letters")}
                 localLetters={t("local_letters")}
                 usedLetters={usedLetters}

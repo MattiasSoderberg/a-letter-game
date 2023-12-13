@@ -1,10 +1,11 @@
 {
   "Metadata": {
     "title": "A Letter Game",
-    "description": "En bokstavslek för hela familjen"
+    "description": "A letter game for the whole family"
   },
   "Utils": {
-    "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö"
+    "alphabet": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z",
+    "loading": "Loading"
   },
   "Navigation": {
     "about": "About",
@@ -13,21 +14,77 @@
     "language": "Language"
   },
   "Index": {
-    "title": "Welcome to A Letter Game!",
-    "subtitle": "En bokstavslek man kan spela med familjen, eller i alla fall delar av den.",
-    "message": "Det är du själv som bestämmer hur spelet ska spelas genom att bestämma kategorier, betänktetid och lag. Det kan vara bra att börja med att läsa igenom reglerna så ni vet hur man spelar.",
+    "title": "Welcome to a Letter Game!",
+    "subtitle": "A letter game you can play with the family, or at least parts of it.",
+    "message": "You decide how the game is played by choosing categories, time, and teams. It's a good idea to start by reading through the rules so you know how it's done.",
     "links": {
       "new_game": {
         "text": "New Game",
-        "href": "/game"
+        "href": "/game/new-game"
       },
       "rules": {
-        "text": "Read the rules",
+        "text": "Read the Rules",
         "href": "/rules"
       }
     }
   },
   "About": {
-    "title": "About A Letter Game"
+    "title": "About The Letter Game",
+    "content": "The idea to create this app came after playing this game with my kids many times. Someone always reads the alphabet silently in their head until someone else says stop and tells which letter they reached. I thought it would be much easier if we had an app that could generate a letter and keep score. This app is the result.",
+    "ending": "I hope those who use it will find it as useful as I have!"
+  },
+  "Rules": {
+    "title": "Rules",
+    "introduction": "The game is simple. The app generates a letter at a time, keep the time and score. The fun part about this game is that it's adaptable to what players feel like. It's all about coming up with an answer that starts with the shown letter for each category.",
+    "content": "The game starts by making some choices and choosing which categories to use. Once in the game, press the button to display a letter. There is a countdown before the letter is shown and the clock starts so all players can get ready. When the time is up, the scoreboard opens and the first category is shown. All players give their answers to the given category. If a player is alone with their answer, it gives 2 points, and if someone else have the same answer, each of those players gets 1 point. No answer at all give 0 points. After all players have given their answers for a category, press the button to show the next category and repeat until all categories are covered. Then close the scoreboard with the same button or the little arrow in the upper right of the scoreboard. When all rounds are completed, press finish to see the top three players. Then you can go back to the homepage to start a new game.",
+    "ending": "It works best if all players have something to write their answers on. It prevents players from potentially 'stealing' answers from each other and makes it a bit easier to remember what you have come up with, but it's also fine to if you just try to memorize your answers."
+  },
+  "Game": {
+    "generate_letter_button_text": "Next Letter",
+    "initial_generate_letter_button_text": "First Letter",
+    "finish_game": "End the Game",
+    "categories_title": "Categories",
+    "rounds_title": "Round",
+    "winner_title": "Winner",
+    "points": "points",
+    "link_button": "Back to Start",
+    "no_active_game": "No Active Game",
+    "drawer": {
+      "player_drawer_button_next": "Next Category",
+      "player_drawer_button_close": "Close",
+      "player_drawer_title": "Score",
+      "player_card_title": "Player"
+    },
+    "new_game": {
+      "title": "New Game",
+      "settings_form": {
+        "title": "Settings",
+        "number_of_players_label": "How many players?",
+        "repeating_letters_label": "Repeating Letters?",
+        "remove_hard_letters_label": "Remove Difficult Letters?",
+        "number_of_rounds_label": "Number of Rounds",
+        "length_of_rounds_label": "Length of Rounds",
+        "categories_label": "Categories",
+        "add_category_button_text": "New Category",
+        "submit_button_text": "Next",
+        "error_messages": {
+          "number_of_players": "Between 2 and 10 players",
+          "number_of_rounds": "Between 3 and 99 rounds",
+          "length_of_rounds": "Between 10 and 999 seconds",
+          "categories": "At least 1 category"
+        }
+      },
+      "players_form": {
+        "title": "Names",
+        "input_label": "Player",
+        "submit_button_text": "Start",
+        "error_messages": {
+          "player_name": "Name must not be empty"
+        }
+      }
+    },
+    "alphabet": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z",
+    "hard_letters": "Q,W,X,Y,Z",
+    "local_letters": ""
   }
 }

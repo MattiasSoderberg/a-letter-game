@@ -4,7 +4,7 @@
     "description": "En bokstavslek för hela familjen"
   },
   "Utils": {
-    "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö",
+    "alphabet": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö",
     "loading": "Laddar"
   },
   "Navigation": {
@@ -49,10 +49,12 @@
     "points": "poäng",
     "link_button": "Tillbaka till start",
     "no_active_game": "Inget aktivt spel",
-    "player_drawer_button_next": "Nästa kategori",
-    "player_drawer_button_close": "Stäng",
-    "player_drawer_title": "Poäng",
-    "player_card_title": "Spelare",
+    "drawer": {
+      "player_drawer_button_next": "Nästa kategori",
+      "player_drawer_button_close": "Stäng",
+      "player_drawer_title": "Poäng",
+      "player_card_title": "Spelare"
+    },
     "new_game": {
       "title": "Nytt spel",
       "settings_form": {
@@ -82,7 +84,7 @@
         }
       }
     },
-    "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö",
+    "alphabet": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö",
     "hard_letters": "Q,W,X,Y,Z",
     "local_letters": "Å,Ä,Ö"
   }
