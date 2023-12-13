@@ -10,7 +10,7 @@ export type GameSettings = {
 
 export const gameSettingsConfig: GameSettings = {
   numberOfPlayers: 2,
-  repeatingLetters: true,
+  repeatingLetters: false,
   removeHardLetters: true,
   removeLocalLetters: false,
   numberOfRounds: 5,
