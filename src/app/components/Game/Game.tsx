@@ -182,6 +182,8 @@ const Game = () => {
               />
               <LetterGenerator
                 alphabeth={t("alphabeth")}
+                hardLetters={t("hard_letters")}
+                localLetters={t("local_letters")}
                 usedLetters={usedLetters}
                 currentLetter={currentLetter}
                 roundNumber={roundNumber}
@@ -189,6 +191,7 @@ const Game = () => {
                 repeatingLetters={gameSettings.repeatingLetters}
                 isRoundActive={isRoundActive}
                 removeHardLetters={gameSettings.removeHardLetters}
+                removeLocalLetters={gameSettings.removeLocalLetters}
                 handleSetCurrentLetter={handleSetCurrentLetter}
               >
                 {roundNumber === gameSettings.numberOfRounds &&
