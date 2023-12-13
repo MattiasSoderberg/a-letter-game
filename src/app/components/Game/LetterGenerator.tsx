@@ -35,7 +35,6 @@ const LetterGenerator = ({
 }: Props) => {
   const [activeLetters, setActiveLetters] = useState<string[]>([]);
   const [borderColor, setBorderColor] = useState("firstLight");
-  const locale = useLocale();
 
   const generateNewLetter = () => {
     handleSetCurrentLetter(
