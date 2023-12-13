@@ -86,7 +86,7 @@ const LetterGenerator = ({
       <div className="w-full flex justify-center py-4">
         <div className="w-[200px] h-full flex flex-col gap-10">
           <div
-            className={`w-full h-[200px] flex justify-center items-center p-4 rounded-lg border-4 border-${borderColor}`}
+            className={`w-full h-[200px] flex justify-center items-center p-4 rounded-lg border-4 border-${borderColor} transition-colors duration-150 ease-in-out`}
           >
             <p className="text-9xl text-darkMain">
               {currentLetter === "?"
