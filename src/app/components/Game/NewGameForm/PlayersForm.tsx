@@ -75,6 +75,7 @@ const PlayersForm = () => {
               name={`players.${index}.name` as const}
               register={register}
               rules={rules}
+              autoFocus={index === 0}
             />
           </LabelWrapper>
         ))}
