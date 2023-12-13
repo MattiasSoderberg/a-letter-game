@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import TextContainer from "../containers/TextContainer";
-import { hardLetters } from "@/gameConfig";
 import { useLocale } from "next-intl";
 
 interface Props {
   children: React.ReactNode;
   alphabeth: string;
+  hardLetters: string;
+  localLetters?: string;
   usedLetters: string[];
   currentLetter: string;
   roundNumber: number;
@@ -13,12 +14,15 @@ interface Props {
   repeatingLetters: boolean;
   isRoundActive: boolean;
   removeHardLetters: boolean;
+  removeLocalLetters: boolean;
   handleSetCurrentLetter: (letter: string) => void;
 }
 
 const LetterGenerator = ({
   children,
   alphabeth,
+  hardLetters,
+  localLetters,
   usedLetters,
   currentLetter,
   roundNumber,
@@ -26,6 +30,7 @@ const LetterGenerator = ({
   repeatingLetters,
   isRoundActive,
   removeHardLetters,
+  removeLocalLetters,
   handleSetCurrentLetter,
 }: Props) => {
   const [activeLetters, setActiveLetters] = useState<string[]>([]);
@@ -63,16 +68,16 @@ const LetterGenerator = ({
   }, [isRoundActive]);
 
   useEffect(() => {
-    const lettersArray = alphabeth.split(",");
-    if (removeHardLetters) {
-      setActiveLetters([
-        ...lettersArray.filter(
-          (letter) => !hardLetters[locale].includes(letter)
-        ),
-      ]);
-    } else {
-      setActiveLetters(lettersArray);
-    }
+    const hardLettersArray = removeHardLetters ? hardLetters.split(",") : [];
+    const localLettersArray = removeLocalLetters
+      ? localLetters?.split(",")
+      : [];
+    const lettersArray = alphabeth
+      .split(",")
+      .filter((letter) => !hardLettersArray.includes(letter))
+      .filter((letter) => !localLettersArray?.includes(letter));
+
+    setActiveLetters(lettersArray);
 
     setBorderColor("firstLight");
   }, []);
