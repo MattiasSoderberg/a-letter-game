@@ -54,7 +54,8 @@
         "title": "Inställningar",
         "number_of_players_label": "Hur många spelare?",
         "repeating_letters_label": "Upprepande bokstäver?",
-        "include_hard_letters_label": "Ta bort svåra bokstäver (Q, X, Z)?",
+        "remove_hard_letters_label": "Ta bort svåra bokstäver?",
+        "remove_local_letters_label": "Ta bort Å, Ä, Ö?",
         "number_of_rounds_label": "Antal omgångar",
         "length_of_rounds_label": "Omgångarnas längd",
         "categories_label": "Kategorier",
@@ -76,6 +77,8 @@
         }
       }
     },
-    "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö"
+    "alphabeth": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,Å,Ä,Ö",
+    "hard_letters": "Q,W,X,Y,Z",
+    "local_letters": "Å,Ä,Ö"
   }
 }
