@@ -16,4 +16,7 @@ export const gameSettingsConfig: GameSettings = {
   categories: [{ value: "" }],
 };
 
-export const hardLetters: string[] = ["Q", "X", "Z"];
+export const hardLetters: { [k: string]: string[] } = {
+  sv: ["Q", "W", "X", "Y", "Z"],
+  en: ["Q", "X", "Z"],
+};
