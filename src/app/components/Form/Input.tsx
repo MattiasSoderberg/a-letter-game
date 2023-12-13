@@ -17,6 +17,7 @@ type Props<T extends FieldValues> = {
   rules?: RegisterOptions;
   maxLength?: number;
   widthFull?: boolean;
+  autoFocus?: boolean;
 };
 
 const Input = <T extends GameSettings | PlayersFormValues>({
@@ -26,6 +27,7 @@ const Input = <T extends GameSettings | PlayersFormValues>({
   rules,
   maxLength = 50,
   widthFull = true,
+  autoFocus = false,
 }: Props<T>) => {
   const isFieldArray = control !== undefined;
 
@@ -42,6 +44,7 @@ const Input = <T extends GameSettings | PlayersFormValues>({
                 type="text"
                 id={name}
                 maxLength={maxLength}
+                autoFocus={autoFocus}
                 {...field}
                 value={field.value ? field.value.toString() : ""}
                 className={`${

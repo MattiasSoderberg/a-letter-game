@@ -43,6 +43,7 @@ const DynamicInput = ({
               control={control}
               register={register}
               rules={registerOptions.inputOptions}
+              autoFocus={fields.length > 1 && index >= fields.length - 1}
             />
             <ButtonNaked
               borders
@@ -55,16 +56,16 @@ const DynamicInput = ({
             </ButtonNaked>
           </li>
         ))}
+        <ButtonNaked
+          size="xs"
+          borders
+          borderRadius="rounded-lg"
+          background="lightMain"
+          onClick={() => append({ value: "" })}
+        >
+          {buttonText}
+        </ButtonNaked>
       </ul>
-      <ButtonNaked
-        size="xs"
-        borders
-        borderRadius="rounded-lg"
-        background="lightMain"
-        onClick={() => append({ value: "" }, { focusIndex: fields.length - 1 })}
-      >
-        {buttonText}
-      </ButtonNaked>
     </div>
   );
 };
