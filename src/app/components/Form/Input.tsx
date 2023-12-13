@@ -62,6 +62,7 @@ const Input = <T extends GameSettings | PlayersFormValues>({
             type="text"
             id={name}
             maxLength={maxLength}
+            autoFocus={autoFocus}
             {...register(name, rules)}
             className={`${
               widthFull ? "w-full h-fit py-1 px-2" : "w-[50px] h-fit py-1 px-2"
