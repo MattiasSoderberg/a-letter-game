@@ -50,10 +50,10 @@
     "points": "points",
     "link_button": "Back to Start",
     "no_active_game": "No Active Game",
-    "drawer": {
-      "player_drawer_button_next": "Next Category",
-      "player_drawer_button_close": "Close",
-      "player_drawer_title": "Score",
+    "scoreboard": {
+      "scoreboard_categories_button_next": "Next Category",
+      "scoreboard_categories_button_close": "Close",
+      "scoreboard_categories_title": "Score",
       "player_card_title": "Player"
     },
     "new_game": {
