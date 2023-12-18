@@ -18,6 +18,9 @@ interface AppContextType {
   isPlayerCardsDrawerOpen: boolean;
   handleOnPlayerCardsDrawerOpen: () => void;
   handleOnPlayerCardsDrawerClose: () => void;
+  isScoreboardOpen: boolean;
+  handleOnScoreboardOpen: () => void;
+  handleOnScoreboardClose: () => void;
   players: Player[];
   handleSetPlayers: (players: Player[]) => void;
   gameSettings: GameSettings;
@@ -40,6 +43,7 @@ export const useAppContext = () => {
 export const AppContextProvider = ({ children }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPlayerCardsDrawerOpen, setIsPlayerCardsOpen] = useState(false);
+  const [isScoreboardOpen, setIsScoreboardOpen] = useState(false);
   const [players, setPlayers] = useState<Player[]>([]);
   const [gameSettings, setGameSettings] =
     useState<GameSettings>(gameSettingsConfig);
@@ -58,6 +62,14 @@ export const AppContextProvider = ({ children }: Props) => {
 
   const handleOnPlayerCardsDrawerClose = () => {
     setIsPlayerCardsOpen(false);
+  };
+
+  const handleOnScoreboardOpen = () => {
+    setIsScoreboardOpen(true);
+  };
+
+  const handleOnScoreboardClose = () => {
+    setIsScoreboardOpen(false);
   };
 
   const handleSetPlayers = (players: Player[]) => {
@@ -81,6 +93,9 @@ export const AppContextProvider = ({ children }: Props) => {
     isPlayerCardsDrawerOpen,
     handleOnPlayerCardsDrawerOpen,
     handleOnPlayerCardsDrawerClose,
+    isScoreboardOpen,
+    handleOnScoreboardOpen,
+    handleOnScoreboardClose,
     handleSetPlayers,
     players,
     handleSetGameSettings,

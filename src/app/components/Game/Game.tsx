@@ -6,17 +6,19 @@ import { useRouter } from "@/navigation";
 import LetterGenerator from "./LetterGenerator";
 import { useTranslations } from "next-intl";
 import GameTimer from "./GameTimer";
-import PlayerCardDrawer from "./PlayerCardDrawer";
 import HeaderDisplay from "./HeaderDisplay";
 import usePlayerCardsDrawer from "@/hooks/usePlayerCardsDrawer";
 import ButtonStandard from "../Button/variants/ButtonStandard";
 import GameFinished from "./GameFinished";
+import Scoreboard from "./Scoreboard/Scoreboard";
+import useScoreboard from "@/hooks/useScoreboard";
 
 export type WinningPlayer = Player & { place: number };
 
 const Game = () => {
   const { players, gameSettings, resetPlayerScore } = useAppContext();
   const { openPlayerCardDrawer } = usePlayerCardsDrawer();
+  const { openScoreboard } = useScoreboard();
   const [currentLetter, setCurrentLetter] = useState("?");
   const [isRoundActive, setIsRoundActive] = useState(false);
   const [roundNumber, setRoundNumber] = useState(1);
@@ -102,7 +104,8 @@ const Game = () => {
       setUsedLetters((prev) => [...prev, currentLetter]);
 
       const timer = setTimeout(() => {
-        openPlayerCardDrawer();
+        // openPlayerCardDrawer();
+        openScoreboard();
         setIsButtonActive(true);
         clearTimeout(timer);
       }, 1000);
@@ -166,7 +169,7 @@ const Game = () => {
     <div className="w-full h-full max-h-[650px] flex flex-col justify-between gap-4 px-4">
       {players.length > 0 ? (
         <>
-          <PlayerCardDrawer
+          <Scoreboard
             players={players}
             currentLetter={currentLetter}
             categories={gameSettings.categories}
