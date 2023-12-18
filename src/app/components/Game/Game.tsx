@@ -23,6 +23,7 @@ const Game = () => {
   const [usedLetters, setUsedLetters] = useState<string[]>([]);
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [letterCountdown, setLetterCountDown] = useState(3);
+  const [isCountdownActive, setIsCountDownActive] = useState(false);
   const [gameTimeLeft, setGameTimeLeft] = useState(gameSettings.lengthOfRounds);
   const [timeIsRunningOut, setTimeIsRunningOut] = useState(false);
   const [winningPlayers, setWinningPlayers] = useState<WinningPlayer[]>([]);
@@ -50,6 +51,7 @@ const Game = () => {
   const onClickNewLetter = () => {
     setCurrentLetter("");
     setIsButtonActive(false);
+    setIsCountDownActive(true);
     if (letterCountdownRef.current) {
       clearInterval(letterCountdownRef.current);
     }
@@ -117,6 +119,7 @@ const Game = () => {
     if (letterCountdownRef.current && letterCountdown === 0) {
       clearInterval(letterCountdownRef.current);
       setIsRoundActive(true);
+      setIsCountDownActive(false);
     }
   }, [letterCountdown]);
 
@@ -193,6 +196,7 @@ const Game = () => {
                 currentLetter={currentLetter}
                 roundNumber={roundNumber}
                 letterCountDown={letterCountdown}
+                isCountdownActive={isCountdownActive}
                 repeatingLetters={gameSettings.repeatingLetters}
                 isRoundActive={isRoundActive}
                 removeHardLetters={gameSettings.removeHardLetters}
@@ -201,7 +205,7 @@ const Game = () => {
               >
                 {roundNumber === gameSettings.numberOfRounds &&
                 !isRoundActive &&
-                letterCountdown === 0 ? (
+                !isCountdownActive ? (
                   <ButtonStandard
                     onClick={onClickFinishGame}
                     size="sm"
