@@ -11,6 +11,7 @@ interface Props {
   currentLetter: string;
   roundNumber: number;
   letterCountDown: number;
+  isCountdownActive: boolean;
   repeatingLetters: boolean;
   isRoundActive: boolean;
   removeHardLetters: boolean;
@@ -27,6 +28,7 @@ const LetterGenerator = ({
   currentLetter,
   roundNumber,
   letterCountDown,
+  isCountdownActive,
   repeatingLetters,
   isRoundActive,
   removeHardLetters,
@@ -51,12 +53,12 @@ const LetterGenerator = ({
   }, [roundNumber]);
 
   useEffect(() => {
-    if (letterCountDown === 0) {
+    if (!isCountdownActive && currentLetter !== "?") {
       generateNewLetter();
-    } else if (letterCountDown === 3) {
+    } else if (isCountdownActive) {
       setBorderColor("thirdMain");
     }
-  }, [letterCountDown]);
+  }, [isCountdownActive]);
 
   useEffect(() => {
     if (isRoundActive) {
@@ -86,14 +88,10 @@ const LetterGenerator = ({
       <div className="w-full flex justify-center py-4">
         <div className="w-[200px] h-full flex flex-col gap-10">
           <div
-            className={`w-full h-[200px] flex justify-center items-center p-4 rounded-lg border-4 border-${borderColor} transition-colors duration-150 ease-in-out`}
+            className={`w-full h-[200px] flex justify-center items-center p-4 rounded-lg border-4 border-${borderColor} transition-colors duration-100 ease-in-out`}
           >
             <p className="text-9xl text-darkMain">
-              {currentLetter === "?"
-                ? currentLetter
-                : letterCountDown > 0
-                ? letterCountDown
-                : currentLetter}
+              {isCountdownActive ? letterCountDown : currentLetter}
             </p>
           </div>
           {children}
