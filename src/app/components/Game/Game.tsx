@@ -7,7 +7,6 @@ import LetterGenerator from "./LetterGenerator";
 import { useTranslations } from "next-intl";
 import GameTimer from "./GameTimer";
 import HeaderDisplay from "./HeaderDisplay";
-import usePlayerCardsDrawer from "@/hooks/usePlayerCardsDrawer";
 import ButtonStandard from "../Button/variants/ButtonStandard";
 import GameFinished from "./GameFinished";
 import Scoreboard from "./Scoreboard/Scoreboard";
@@ -17,7 +16,6 @@ export type WinningPlayer = Player & { place: number };
 
 const Game = () => {
   const { players, gameSettings, resetPlayerScore } = useAppContext();
-  const { openPlayerCardDrawer } = usePlayerCardsDrawer();
   const { openScoreboard } = useScoreboard();
   const [currentLetter, setCurrentLetter] = useState("?");
   const [isRoundActive, setIsRoundActive] = useState(false);
