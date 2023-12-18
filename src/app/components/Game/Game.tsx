@@ -133,7 +133,6 @@ const Game = () => {
             index: number,
             players: WinningPlayer[]
           ) => {
-            console.log(index, player);
             if (index > 0 && players[index - 1].points === player.points) {
               player.place = players[index - 1].place;
             } else {
