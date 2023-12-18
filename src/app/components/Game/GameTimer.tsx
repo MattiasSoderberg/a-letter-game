@@ -62,7 +62,7 @@ const GameTimer = ({
   return (
     <TextContainer shadowColor={shadowColor} padding={false}>
       <div
-        className={`w-full flex justify-center bg-${bgColor} p-4 rounded transition-colors duration-150 ease-in-out`}
+        className={`w-full flex justify-center bg-${bgColor} p-4 rounded transition-colors duration-100 ease-in-out`}
       >
         <p className="text-2xl">{renderTime(gameTimeLeft)}</p>
       </div>
