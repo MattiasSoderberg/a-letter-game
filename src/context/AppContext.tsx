@@ -64,8 +64,8 @@ export const AppContextProvider = ({ children }: Props) => {
     setPlayers(players);
   };
 
-  const handleSetGameSettings = (settings: GameSettings) => {
-    setGameSettings(settings);
+  const handleSetGameSettings = (settings: Partial<GameSettings>) => {
+    setGameSettings((prev) => ({ ...prev, ...settings }));
   };
 
   const resetPlayerScore = () => {
