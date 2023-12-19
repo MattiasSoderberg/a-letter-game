@@ -33,8 +33,8 @@ const Game = () => {
   const router = useRouter();
   const t = useTranslations("Game");
   const littleTimeLeftLimit =
-    gameSettings.lengthOfRounds > 30
-      ? Math.ceil(gameSettings.lengthOfRounds * 0.2)
+    gameSettings.lengthOfRounds >= 30
+      ? Math.round(gameSettings.lengthOfRounds * 0.25)
       : 6;
 
   const handleSetCurrentLetter = (letter: string) => {
