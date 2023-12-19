@@ -101,10 +101,13 @@ const Game = () => {
     if (currentLetter !== "?" && !isRoundActive) {
       setUsedLetters((prev) => [...prev, currentLetter]);
 
-      const timer = setTimeout(() => {
+      const parentTimer = setTimeout(() => {
         openScoreboard();
-        setIsButtonActive(true);
-        clearTimeout(timer);
+        clearTimeout(parentTimer);
+        const childTimer = setTimeout(() => {
+          setIsButtonActive(true);
+          clearTimeout(childTimer);
+        }, 500);
       }, 1000);
     }
   }, [isRoundActive]);
