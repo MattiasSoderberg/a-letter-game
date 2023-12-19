@@ -15,7 +15,8 @@ import useScoreboard from "@/hooks/useScoreboard";
 export type WinningPlayer = Player & { place: number };
 
 const Game = () => {
-  const { players, gameSettings, resetPlayerScore } = useAppContext();
+  const { players, gameSettings, resetPlayerScore, resetPlayers, resetGame } =
+    useAppContext();
   const { openScoreboard } = useScoreboard();
   const [currentLetter, setCurrentLetter] = useState("?");
   const [isRoundActive, setIsRoundActive] = useState(false);
@@ -74,15 +75,12 @@ const Game = () => {
     setIsGameFinished(true);
   };
 
-  const resetGame = () => {
-    // setUsedLetters([]);
-    resetPlayerScore();
-  };
+  // const resetGame = () => {
+  //   resetPlayers();
+  // };
 
   const resetCurrentGame = () => {
-    // setUsedLetters([])
     resetPlayerScore();
-    router.refresh();
   };
 
   const handleSetButtonText = (

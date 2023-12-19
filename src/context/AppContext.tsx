@@ -23,6 +23,8 @@ interface AppContextType {
   gameSettings: GameSettings;
   handleSetGameSettings: (settings: GameSettings) => void;
   resetPlayerScore: () => void;
+  resetPlayers: () => void;
+  resetGame: () => void;
 }
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -74,6 +76,15 @@ export const AppContextProvider = ({ children }: Props) => {
     ]);
   };
 
+  const resetPlayers = () => {
+    setPlayers([]);
+  };
+
+  const resetGame = () => {
+    resetPlayers();
+    setGameSettings(gameSettingsConfig);
+  };
+
   const value = {
     isMenuOpen,
     handleOnMenuOpen,
@@ -86,6 +97,8 @@ export const AppContextProvider = ({ children }: Props) => {
     handleSetGameSettings,
     gameSettings,
     resetPlayerScore,
+    resetPlayers,
+    resetGame,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
