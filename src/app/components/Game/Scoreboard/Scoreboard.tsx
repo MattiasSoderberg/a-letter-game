@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Player, useAppContext } from "@/context/AppContext";
 import { useTranslations } from "next-intl";
@@ -11,9 +11,9 @@ import {
 } from "react-icons/md";
 import useScoreboard from "@/hooks/useScoreboard";
 import { GameSettings } from "@/gameConfig";
-import { H1 } from "../../Typography";
 import ScoreboardCategories from "./ScoreboardCategories";
 import PlayerCardContainer from "./PlayerCardContainer";
+import ScoreboardHeader from "./ScoreboardHeader";
 
 interface Props {
   players: Player[];
@@ -26,6 +26,12 @@ const Scoreboard = ({ players, currentLetter, categories }: Props) => {
   const { openScoreboard, closeScoreboard } = useScoreboard();
   const t = useTranslations("Game.scoreboard");
 
+  useEffect(() => {
+    if (isScoreboardOpen) {
+      closeScoreboard();
+    }
+  }, []);
+
   return (
     <motion.div
       initial={{ x: "-92%" }}
@@ -36,14 +42,10 @@ const Scoreboard = ({ players, currentLetter, categories }: Props) => {
       <div className="w-full h-full flex items-start relative container-drop-shadow">
         <div className="w-full h-full flex flex-col gap-6 bg-lightMain">
           <div className="w-full flex flex-col gap-6 p-5">
-            <div className="w-full flex justify-between">
-              <H1>{t("scoreboard_title")}</H1>
-              {currentLetter !== "?" && (
-                <div className="w-1/5 flex justify-center p-2 rounded-lg border-2 border-firstLight">
-                  <p className="text-2xl text-darkMain">{currentLetter}</p>
-                </div>
-              )}
-            </div>
+            <ScoreboardHeader
+              heading={t("scoreboard_title")}
+              currentLetter={currentLetter}
+            />
             {currentLetter !== "?" && (
               <ScoreboardCategories
                 categories={categories}
