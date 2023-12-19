@@ -18,9 +18,11 @@ type Props<T extends FieldValues> = {
   maxLength?: number;
   widthFull?: boolean;
   autoFocus?: boolean;
+  size?: "lg" | "sm";
+  type?: "text" | "number";
 };
 
-const Input = <T extends GameSettings | PlayersFormValues>({
+const Input = <T extends Partial<GameSettings> | PlayersFormValues>({
   name,
   register,
   control,
@@ -28,8 +30,15 @@ const Input = <T extends GameSettings | PlayersFormValues>({
   maxLength = 50,
   widthFull = true,
   autoFocus = false,
+  size = "lg",
+  type = "text",
 }: Props<T>) => {
   const isFieldArray = control !== undefined;
+  const classes = `${
+    widthFull ? "w-full h-fit py-1 px-2" : "w-[50px] h-fit py-1 px-2"
+  } rounded-lg outline-2 outline-secondMain border border-secondLight ${
+    size === "sm" && "w-[40px] py-[2px] px-[6px] outline-1"
+  }`;
 
   return (
     <>
@@ -41,7 +50,7 @@ const Input = <T extends GameSettings | PlayersFormValues>({
           render={({ field }) => (
             <>
               <input
-                type="text"
+                type={type}
                 id={name}
                 maxLength={maxLength}
                 autoFocus={autoFocus}
@@ -59,14 +68,12 @@ const Input = <T extends GameSettings | PlayersFormValues>({
       ) : (
         <>
           <input
-            type="text"
+            type={type}
             id={name}
             maxLength={maxLength}
             autoFocus={autoFocus}
             {...register(name, rules)}
-            className={`${
-              widthFull ? "w-full h-fit py-1 px-2" : "w-[50px] h-fit py-1 px-2"
-            } rounded-lg outline-2 outline-secondMain border border-secondLight`}
+            className={classes}
           />
         </>
       )}
