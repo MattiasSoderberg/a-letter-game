@@ -4,12 +4,7 @@ import { H2 } from "../../Typography";
 import ButtonStandard from "../../Button/variants/ButtonStandard";
 import { Player, useAppContext } from "@/context/AppContext";
 import { useTranslations } from "next-intl";
-import {
-  FieldValues,
-  SubmitHandler,
-  useFieldArray,
-  useForm,
-} from "react-hook-form";
+import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import TextContainer from "../../containers/TextContainer";
 import LabelWrapper from "../../Form/LabelWrapper";
 import Input from "../../Form/Input";
@@ -20,8 +15,21 @@ export type PlayersFormValues = {
 };
 
 const PlayersForm = () => {
-  const { gameSettings, handleSetPlayers } = useAppContext();
+  const { gameSettings, handleSetPlayers, players } = useAppContext();
   const router = useRouter();
+  const emptyPlayerArray = Array.from(
+    Array(gameSettings.numberOfPlayers) as Player[]
+  ).fill({
+    name: "",
+    points: 0,
+  });
+  const defaultPlayersValue = emptyPlayerArray.map((player, index) => {
+    if (players[index]) {
+      players[index].points = 0;
+      return players[index];
+    }
+    return player;
+  });
   const {
     register,
     handleSubmit,
@@ -29,12 +37,7 @@ const PlayersForm = () => {
     formState: { errors },
   } = useForm<PlayersFormValues>({
     defaultValues: {
-      players: Array.from(Array(gameSettings.numberOfPlayers) as Player[]).fill(
-        {
-          name: "",
-          points: 0,
-        }
-      ),
+      players: defaultPlayersValue,
     },
     mode: "onBlur",
   });
