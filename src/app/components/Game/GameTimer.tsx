@@ -17,6 +17,7 @@ const GameTimer = ({
 }: Props) => {
   const [bgColor, setBgColor] = useState("transparent");
   const [shadowColor, setShadowColor] = useState("lightDark");
+  const [showShadow, setShowShadow] = useState(false);
 
   const renderTime = (time: number) => {
     if (time < 60) {
@@ -32,7 +33,8 @@ const GameTimer = ({
 
   useEffect(() => {
     if (isRoundActive) {
-      setBgColor("lightMain");
+      setShowShadow(true);
+      setBgColor("firstMain");
       setShadowColor("firstLight");
     } else {
       setBgColor("danger");
@@ -49,6 +51,7 @@ const GameTimer = ({
 
   useEffect(() => {
     if (gameTimeLeft === lengthOfRounds) {
+      setShowShadow(false);
       setBgColor("lightMain");
       setShadowColor("lightDark");
     }
@@ -60,11 +63,16 @@ const GameTimer = ({
   }, []);
 
   return (
-    <TextContainer shadowColor={shadowColor} padding={false}>
+    <TextContainer padding={false}>
       <div
-        className={`w-full flex justify-center bg-${bgColor} p-4 rounded transition-colors duration-100 ease-in-out`}
+        className={`w-full h-full flex justify-center ${
+          showShadow && "game-timer-shadow"
+        } shadow-${shadowColor}  p-4 rounded transition-colors duration-100 ease-in-out relative`}
       >
-        <p className="text-2xl">{renderTime(gameTimeLeft)}</p>
+        <div
+          className={`w-full h-full bg-${bgColor} opacity-10 absolute top-0 left-0 z-0`}
+        />
+        <p className="text-2xl z-10">{renderTime(gameTimeLeft)}</p>
       </div>
     </TextContainer>
   );
