@@ -1,5 +1,5 @@
 import React from "react";
-import { TextLarge, TextSmall } from "../Typography";
+import { TextLarge, TextRegular, TextSmall } from "../Typography";
 
 interface Props {
   children: React.ReactNode;
@@ -7,6 +7,7 @@ interface Props {
   name: string;
   error?: string;
   horizontal?: boolean;
+  size?: "lg" | "sm";
 }
 
 const LabelWrapper = ({
@@ -15,6 +16,7 @@ const LabelWrapper = ({
   name,
   error,
   horizontal = false,
+  size = "lg",
 }: Props) => {
   return (
     <div
@@ -28,7 +30,11 @@ const LabelWrapper = ({
         }`}
       >
         <label htmlFor={name}>
-          <TextLarge>{label}</TextLarge>
+          {size === "lg" ? (
+            <TextLarge>{label}</TextLarge>
+          ) : (
+            <TextRegular>{label}</TextRegular>
+          )}
         </label>
         {error && (
           <div
