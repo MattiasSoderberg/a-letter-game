@@ -121,6 +121,7 @@ const SettingsForm = () => {
           <Input<GameSettings>
             name="numberOfRounds"
             register={register}
+            type="number"
             maxLength={2}
             widthFull={false}
             rules={registerOptions.numberOfRounds}
@@ -134,6 +135,7 @@ const SettingsForm = () => {
           <Input<GameSettings>
             name="lengthOfRounds"
             register={register}
+            type="number"
             maxLength={3}
             widthFull={false}
             rules={registerOptions.lengthOfRounds}
