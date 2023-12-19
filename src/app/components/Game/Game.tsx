@@ -119,8 +119,6 @@ const Game = () => {
             ];
         } while (prevActiveRoundText.includes(activeRoundText));
 
-        console.log(prevActiveRoundText, activeRoundText);
-
         setPrevActiveRoundText((prev) => {
           if (prev.length + 1 >= activeRoundOptions.length) {
             return [];
