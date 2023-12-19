@@ -82,7 +82,9 @@ const PlayersForm = () => {
             />
           </LabelWrapper>
         ))}
-        <ButtonStandard type="submit">{t("submit_button_text")}</ButtonStandard>
+        <ButtonStandard type="submit" size="sm">
+          {t("submit_button_text")}
+        </ButtonStandard>
       </form>
     </TextContainer>
   );
