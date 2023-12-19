@@ -155,6 +155,10 @@ const Game = () => {
   }, [isGameFinished]);
 
   useEffect(() => {
+    setGameTimeLeft(gameSettings.lengthOfRounds);
+  }, [gameSettings.lengthOfRounds]);
+
+  useEffect(() => {
     return () => {
       if (letterCountdownRef.current) {
         clearInterval(letterCountdownRef.current);
