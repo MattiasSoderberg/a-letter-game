@@ -102,7 +102,6 @@ const Game = () => {
       setUsedLetters((prev) => [...prev, currentLetter]);
 
       const timer = setTimeout(() => {
-        // openPlayerCardDrawer();
         openScoreboard();
         setIsButtonActive(true);
         clearTimeout(timer);
