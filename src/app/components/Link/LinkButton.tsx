@@ -35,7 +35,7 @@ const LinkButton = ({
   } ${borderRadius} flex justify-center`;
   const activeClasses = `${baseClasses} bg-${background} text-${color} ${hoverClasses} ${transition}`;
   return (
-    <Link href={href} className={activeClasses}>
+    <Link href={href} className={activeClasses} onClick={onClick}>
       {children}
     </Link>
   );
