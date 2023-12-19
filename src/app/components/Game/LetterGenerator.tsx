@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import TextContainer from "../containers/TextContainer";
-import { useLocale } from "next-intl";
 
 interface Props {
   children: React.ReactNode;
