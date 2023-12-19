@@ -28,6 +28,8 @@ const Game = () => {
   const [timeIsRunningOut, setTimeIsRunningOut] = useState(false);
   const [winningPlayers, setWinningPlayers] = useState<WinningPlayer[]>([]);
   const [isButtonActive, setIsButtonActive] = useState(true);
+  const [buttonText, setButtonText] = useState("");
+  const [prevActiveRoundText, setPrevActiveRoundText] = useState<string[]>([]);
   const letterCountdownRef = useRef<ReturnType<typeof setInterval>>();
   const gameTimerRef = useRef<ReturnType<typeof setInterval>>();
   const router = useRouter();
@@ -51,6 +53,7 @@ const Game = () => {
   const onClickNewLetter = () => {
     setCurrentLetter("");
     setIsButtonActive(false);
+    handleSetButtonText("countdown");
     setIsCountDownActive(true);
     if (letterCountdownRef.current) {
       clearInterval(letterCountdownRef.current);
@@ -72,20 +75,80 @@ const Game = () => {
   };
 
   const resetGame = () => {
-    setUsedLetters([]);
+    // setUsedLetters([]);
     resetPlayerScore();
   };
 
-  useEffect(() => {
-    if (players.length <= 0) {
-      router.push("/game/new-game");
+  const resetCurrentGame = () => {
+    // setUsedLetters([])
+    resetPlayerScore();
+    router.refresh();
+  };
+
+  const handleSetButtonText = (
+    state:
+      | "initial"
+      | "generateLetter"
+      | "activeRound"
+      | "countdown"
+      | "endOfRound"
+      | "finished"
+  ) => {
+    const activeRoundOptions = t(
+      "generate_letter_button_active_round_text_options"
+    ).split(",");
+
+    switch (state) {
+      case "initial":
+        setButtonText(t("generate_letter_button_initial_text"));
+        break;
+      case "generateLetter":
+        setButtonText(t("generate_letter_button_text"));
+        break;
+      case "activeRound":
+        let activeRoundText: string;
+
+        if (prevActiveRoundText.length >= activeRoundOptions.length) {
+          setPrevActiveRoundText([]);
+        }
+
+        do {
+          activeRoundText =
+            activeRoundOptions[
+              Math.floor(Math.random() * activeRoundOptions.length)
+            ];
+        } while (prevActiveRoundText.includes(activeRoundText));
+
+        console.log(prevActiveRoundText, activeRoundText);
+
+        setPrevActiveRoundText((prev) => {
+          if (prev.length + 1 >= activeRoundOptions.length) {
+            return [];
+          }
+          return [...prev, activeRoundText];
+        });
+        setButtonText(activeRoundText);
+        break;
+      case "countdown":
+        setButtonText(t("generate_letter_button_countdown_text"));
+        break;
+      case "endOfRound":
+        setButtonText(t("generate_letter_button_end_of_round_text"));
+        break;
+      case "finished":
+        setButtonText(t("finnish_game"));
+        break;
+      default:
+        setButtonText(t("generate_letter_button_initial_text"));
+        break;
     }
-  }, []);
+  };
 
   useEffect(() => {
     if (isRoundActive && currentLetter !== "?") {
       setGameTimeLeft(gameSettings.lengthOfRounds);
       setTimeIsRunningOut(false);
+      handleSetButtonText("activeRound");
       gameTimerRef.current = setInterval(() => {
         setGameTimeLeft((prev) => {
           if (prev === 1) {
@@ -100,12 +163,18 @@ const Game = () => {
 
     if (currentLetter !== "?" && !isRoundActive) {
       setUsedLetters((prev) => [...prev, currentLetter]);
+      handleSetButtonText("endOfRound");
 
       const parentTimer = setTimeout(() => {
         openScoreboard();
         clearTimeout(parentTimer);
         const childTimer = setTimeout(() => {
           setIsButtonActive(true);
+          if (roundNumber >= gameSettings.numberOfRounds) {
+            handleSetButtonText("finished");
+          } else {
+            handleSetButtonText("generateLetter");
+          }
           clearTimeout(childTimer);
         }, 500);
       }, 1000);
@@ -159,6 +228,12 @@ const Game = () => {
   }, [gameSettings.lengthOfRounds]);
 
   useEffect(() => {
+    if (players.length <= 0) {
+      router.push("/game/new-game");
+    }
+
+    handleSetButtonText("initial");
+
     return () => {
       if (letterCountdownRef.current) {
         clearInterval(letterCountdownRef.current);
@@ -219,7 +294,7 @@ const Game = () => {
                     hovers=""
                     disabled={!isButtonActive}
                   >
-                    {t("finnish_game")}
+                    {buttonText}
                   </ButtonStandard>
                 ) : (
                   <ButtonStandard
@@ -228,11 +303,7 @@ const Game = () => {
                     hovers=""
                     disabled={!isButtonActive}
                   >
-                    {currentLetter === "?"
-                      ? t("initial_generate_letter_button_text")
-                      : !isButtonActive
-                      ? t("generate_letter_button_alt_text")
-                      : t("generate_letter_button_text")}
+                    {buttonText}
                   </ButtonStandard>
                 )}
               </LetterGenerator>
@@ -241,6 +312,7 @@ const Game = () => {
             <GameFinished
               winningPlayers={winningPlayers}
               onLinkClick={resetGame}
+              onPlayAgainClick={resetCurrentGame}
             />
           )}
         </>
