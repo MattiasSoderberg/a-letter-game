@@ -2,7 +2,6 @@
 import React from "react";
 import useMenu from "@/hooks/useMenu";
 import { motion } from "framer-motion";
-import { Link } from "@/navigation";
 import { TextRegular } from "../Typography";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslations } from "next-intl";
@@ -24,12 +23,6 @@ const MenuContentContainer = () => {
     >
       <div className="w-full h-full flex flex-col gap-10 bg-lightMain p-10">
         <ul className="w-full h-max flex flex-col items-start gap-8">
-          {/* <li className="w-full flex flex-col gap-2">
-            <Link href="/about" onClick={closeMenu}>
-              <TextRegular>{t("about")}</TextRegular>
-            </Link>
-            <div className="w-full h-[1px] bg-firstLight" />
-          </li> */}
           <li className="w-full flex flex-col gap-2">
             <LinkStyled href="/about" onClick={closeMenu}>
               <TextRegular>{t("about")}</TextRegular>
