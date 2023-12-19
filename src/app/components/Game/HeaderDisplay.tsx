@@ -26,7 +26,7 @@ const HeaderDisplay = ({ categories, numberOfRounds, roundNumber }: Props) => {
           </div>
         </div>
         <Divider color="darkLighter" />
-        <div className="w-full flex flex-wrap gap-x-8 gap-y-2 justify-between">
+        <div className="w-max max-w-full flex flex-wrap gap-x-8 gap-y-2">
           {categories.map((category) => (
             <TextRegular key={category.value}>{category.value}</TextRegular>
           ))}
