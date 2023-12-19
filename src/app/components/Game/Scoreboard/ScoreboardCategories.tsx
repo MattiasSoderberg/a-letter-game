@@ -1,6 +1,5 @@
-import { GameSettings } from "@/gameConfig";
-import useScoreboard from "@/hooks/useScoreboard";
 import React, { useEffect, useState } from "react";
+import { GameSettings } from "@/gameConfig";
 import Divider from "../../DrawerMenu/Divider";
 import { AnimatePresence, motion } from "framer-motion";
 import ButtonStandard from "../../Button/variants/ButtonStandard";
@@ -23,6 +22,10 @@ const ScoreboardCategories = ({
   const onClick = () => {
     if (currentIndex >= categories.length - 1) {
       closeFunction();
+      const timer = setTimeout(() => {
+        setCurrentIndex(0);
+        clearTimeout(timer);
+      }, 300);
     } else {
       setCurrentIndex((prev) => prev + 1);
     }
@@ -50,13 +53,8 @@ const ScoreboardCategories = ({
       },
     };
 
-    useEffect(() => {
-      setCurrentIndex(0);
-    }, []);
-
     return (
       <motion.p
-        // layout
         key={`drawer-category-${text}`}
         variants={variants}
         initial="initial"
@@ -72,6 +70,10 @@ const ScoreboardCategories = ({
       </motion.p>
     );
   };
+
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, []);
 
   return (
     <div className="w-full flex flex-col gap-6">
