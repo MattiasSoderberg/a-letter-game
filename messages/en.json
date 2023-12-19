@@ -42,13 +42,15 @@
   "Game": {
     "generate_letter_button_text": "Next Letter",
     "initial_generate_letter_button_text": "First Letter",
-    "generate_letter_button_alt_text": "Round running",
+    "generate_letter_button_active_round_text": "Round Active",
+    "generate_letter_button_countdown_text": "Ready?",
     "finish_game": "End the Game",
     "categories_title": "Categories",
     "rounds_title": "Round",
     "winner_title": "Winner",
     "points": "points",
     "back_to_start_button_text": "Back to Start",
+    "play_again_button_text": "Play again",
     "no_active_game": "No Active Game",
     "scoreboard": {
       "scoreboard_categories_button_next": "Next Category",

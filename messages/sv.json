@@ -40,15 +40,18 @@
     "ending": "Det fungerar som bäst om alla spelare har något att skriva sina svar på. Det förhindrar att spelare \"snor\" svar från varandra och gör det lite lättare att komma ihåg vad man kommit fram till men det går bra att hålla sina svar i huvudet också."
   },
   "Game": {
+    "generate_letter_button_initial_text": "Första bokstaven",
     "generate_letter_button_text": "Nästa bokstav",
-    "initial_generate_letter_button_text": "Första bokstaven",
-    "generate_letter_button_alt_text": "Omgång igång",
+    "generate_letter_button_active_round_text_options": "Kom igen nu!,Du klarar det här!,Tänk riktigt hårt nu,Tänk tänk tänk...,KÄMPA!!",
+    "generate_letter_button_countdown_text": "Redo?",
+    "generate_letter_button_end_of_round_text": "Tiden är ute",
     "finnish_game": "Avsluta spelet",
     "categories_title": "Kategorier",
     "rounds_title": "Omgång",
     "winner_title": "Vinnare",
     "points": "poäng",
     "back_to_start_button_text": "Tillbaka till start",
+    "play_again_button_text": "Spela igen",
     "no_active_game": "Inget aktivt spel",
     "scoreboard": {
       "scoreboard_categories_button_next": "Nästa kategori",
