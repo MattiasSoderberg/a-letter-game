@@ -48,7 +48,7 @@
     "rounds_title": "Omgång",
     "winner_title": "Vinnare",
     "points": "poäng",
-    "link_button": "Tillbaka till start",
+    "back_to_start_button_text": "Tillbaka till start",
     "no_active_game": "Inget aktivt spel",
     "scoreboard": {
       "scoreboard_categories_button_next": "Nästa kategori",

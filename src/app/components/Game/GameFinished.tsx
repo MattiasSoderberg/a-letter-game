@@ -46,7 +46,7 @@ const GameFinished = ({ winningPlayers, onLinkClick }: Props) => {
             )
           )}
         <LinkButton href="/" onClick={onLinkClick}>
-          {t("link_button")}
+          {t("back_to_start_button_text")}
         </LinkButton>
       </TextContainer>
     </div>

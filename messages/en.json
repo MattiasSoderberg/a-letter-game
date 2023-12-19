@@ -48,7 +48,7 @@
     "rounds_title": "Round",
     "winner_title": "Winner",
     "points": "points",
-    "link_button": "Back to Start",
+    "back_to_start_button_text": "Back to Start",
     "no_active_game": "No Active Game",
     "scoreboard": {
       "scoreboard_categories_button_next": "Next Category",
