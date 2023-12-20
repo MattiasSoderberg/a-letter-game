@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { H2, TextRegular } from "../Typography";
 import { useAppContext } from "@/context/AppContext";
 import ButtonNaked from "../Button/variants/ButtonNaked";
@@ -25,8 +25,11 @@ const PlayerCard = ({ name, points, index }: Props) => {
     const data = [...players];
     data[index]["points"] += point;
     handleSetPlayers(data);
-    setPlayerScore((prevScore) => prevScore + point);
   };
+
+  useEffect(() => {
+    setPlayerScore(points);
+  }, [points]);
 
   return (
     <div className="w-max h-max flex flex-col gap-2 p-4 bg-textContainerBG rounded-lg container-shadow shadow-lightDark">
