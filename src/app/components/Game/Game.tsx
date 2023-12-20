@@ -15,7 +15,7 @@ import useScoreboard from "@/hooks/useScoreboard";
 export type WinningPlayer = Player & { place: number };
 
 const Game = () => {
-  const { players, gameSettings, resetPlayerScore, resetPlayers, resetGame } =
+  const { players, gameSettings, resetPlayerScore, resetGame } =
     useAppContext();
   const { openScoreboard } = useScoreboard();
   const [currentLetter, setCurrentLetter] = useState("?");
@@ -81,6 +81,38 @@ const Game = () => {
 
   const resetCurrentGame = () => {
     resetPlayerScore();
+  };
+
+  const restartCurrentGame = () => {
+    const initialValues = {
+      currentLetter: "?",
+      isRoundActive: false,
+      roundNumber: 1,
+      usedLetters: [],
+      isGameFinished: false,
+      letterCountdown: 3,
+      isCountdownActive: false,
+      gameTimeLeft: gameSettings.lengthOfRounds,
+      timeIsRunningOut: false,
+      winningPlayers: [],
+      isButtonActive: true,
+      buttonText: t("generate_letter_button_initial_text"),
+      prevActiveRoundText: [],
+    };
+    resetPlayerScore();
+    setCurrentLetter(initialValues.currentLetter);
+    setIsRoundActive(initialValues.isRoundActive);
+    setRoundNumber(initialValues.roundNumber);
+    setUsedLetters(initialValues.usedLetters);
+    setIsGameFinished(initialValues.isGameFinished);
+    setLetterCountDown(initialValues.letterCountdown);
+    setIsCountDownActive(initialValues.isCountdownActive);
+    setGameTimeLeft(initialValues.gameTimeLeft);
+    setTimeIsRunningOut(initialValues.timeIsRunningOut);
+    setWinningPlayers(initialValues.winningPlayers);
+    setIsButtonActive(initialValues.isButtonActive);
+    setButtonText(initialValues.buttonText);
+    setPrevActiveRoundText(initialValues.prevActiveRoundText);
   };
 
   const handleSetButtonText = (
@@ -308,7 +340,8 @@ const Game = () => {
             <GameFinished
               winningPlayers={winningPlayers}
               onLinkClick={resetGame}
-              onPlayAgainClick={resetCurrentGame}
+              onNewGameClick={resetCurrentGame}
+              onPlayAgainClick={restartCurrentGame}
             />
           )}
         </>
