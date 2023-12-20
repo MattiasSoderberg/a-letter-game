@@ -69,7 +69,11 @@ const SettingsForm = () => {
         typeof data.numberOfPlayers === "string"
           ? parseInt(data.numberOfPlayers)
           : data.numberOfPlayers,
-      categories: data.categories.filter((category) => category.value !== ""),
+      categories: data.categories
+        .filter((category) => category.value !== "")
+        .map((category) => ({
+          value: category.value.at(0)?.toUpperCase() + category.value.slice(1),
+        })),
     };
     handleSetGameSettings(settings);
     router.push("/game/new-game/player-names");
