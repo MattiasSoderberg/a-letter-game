@@ -4,16 +4,19 @@ import { H2, TextLarge, TextRegular, TextSmall } from "../Typography";
 import LinkButton from "../Link/LinkButton";
 import { useTranslations } from "next-intl";
 import { WinningPlayer } from "./Game";
+import ButtonStandard from "../Button/variants/ButtonStandard";
 
 interface Props {
   winningPlayers: WinningPlayer[];
   onLinkClick: () => void;
+  onNewGameClick: () => void;
   onPlayAgainClick: () => void;
 }
 
 const GameFinished = ({
   winningPlayers,
   onLinkClick,
+  onNewGameClick,
   onPlayAgainClick,
 }: Props) => {
   const t = useTranslations("Game");
@@ -51,8 +54,11 @@ const GameFinished = ({
             )
           )}
         <div className="w-full flex flex-col gap-6 mt-4">
-          <LinkButton href="/game/new-game" onClick={onPlayAgainClick}>
+          <ButtonStandard onClick={onPlayAgainClick}>
             {t("play_again_button_text")}
+          </ButtonStandard>
+          <LinkButton href="/game/new-game" onClick={onNewGameClick} size="sm">
+            {t("start_new_game")}
           </LinkButton>
           <LinkButton
             href="/"
